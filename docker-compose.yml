@@ -48,13 +48,11 @@ networks:
   moviegobs:
 
 volumes:
-  mongovol:
-
   moviegobsvol:
     driver: local
     driver_opts:
       type: none
-      device: /media/pi/PiTB/media
+      device: /media/pi/FOO
       o: bind
 
   moviegobspicvol:
