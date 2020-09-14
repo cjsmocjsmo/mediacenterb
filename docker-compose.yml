@@ -4,14 +4,14 @@ services:
   db:
     image: andresvidal/rpi3-mongodb3:latest
     networks:
-      - mediacenter
+      - mediacenterb
     ports:
       - 27017:27017
     # volumes:
     #   - mongovol:/data/db
 
   mediacenterb:
-    image: mediacenterb:0.0.1
+    image: mediacenterb:0.0.2
     build: .
     environment:
       - mediacenter_SETUP=1
@@ -29,13 +29,13 @@ services:
       - mediacenter_THUMBNAIL_PIC_PATH=/static
       - mediacenter_TEMPLATE_ADDRESS=./static/templates/mediacenter.template
       - mediacenter_SERVER_PORT=8888
-      - mediacenter_SERVER_ADDRESS=http://192.168.0.26
+      - mediacenter_SERVER_ADDRESS=http://192.168.0.42
       - mediacenter_OMXPLAYER_ADDRESS=http://192.168.0.42:8181/OmxplayerPlayMedia
       - mediacenter_OMXPLAYER_ADDRESS_REACT=http://192.168.0.42:8181/OmxplayerPlayMediaReact
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
     networks:
-      - mediacenter
+      - mediacenterb
     ports:
       - 8888:8888
     volumes:
@@ -45,7 +45,7 @@ services:
       - db
 
 networks:
-  mediacenter:
+  mediacenterb:
 
 volumes:
   mediacentervol:
