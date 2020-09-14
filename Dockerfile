@@ -1,9 +1,12 @@
 # FROM arm32v7/golang:1.12.13 AS builder
 FROM golang:latest AS builder
-COPY mediacenterb .
-RUN export GOPATH=/go/src/mediacenterb
-RUN go get -v ./src/mediacenterb
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./src/mediacenterb
+RUN mkdir /go/src/mediacenterb
+WORKDIR /go/src/mediacenterb
+
+COPY mediacenter .
+RUN export GOPATH=/go/src/mediacenter
+RUN go get -v /go/src/mediacenter
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main /go/src/mediacenter
 
 # FROM arm32v6/alpine:latest
 FROM alpine:latest
