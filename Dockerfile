@@ -3,7 +3,7 @@ FROM golang:latest AS builder
 RUN mkdir /go/src/mediacenterb
 WORKDIR /go/src/mediacenterb
 
-COPY mediacenter .
+COPY mediacenterb .
 RUN export GOPATH=/go/src/mediacenter
 RUN go get -v /go/src/mediacenter
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main /go/src/mediacenter
