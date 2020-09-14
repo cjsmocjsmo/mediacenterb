@@ -45,10 +45,10 @@ func dBcon() *mgo.Session {
 }
 
 func setHeaders(w http.ResponseWriter) ( http.ResponseWriter ) {
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Cache-Control", "max-age=370739520, public")
 	return w
 }
 
@@ -64,10 +64,6 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(ActionMedia)
 }
 
@@ -83,10 +79,6 @@ func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(CartoonMedia)
 }
 
@@ -102,10 +94,6 @@ func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(ComedyMedia)
 }
 
@@ -121,10 +109,6 @@ func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(DramaMedia)
 }
 
@@ -140,10 +124,6 @@ func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(GodzillaMedia)
 }
 
@@ -159,10 +139,6 @@ func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(IndianaJonesMedia)
 }
 
@@ -178,10 +154,6 @@ func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(JohnWayneMedia)
 }
 
@@ -197,10 +169,6 @@ func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(JurassicParkMedia)
 }
 
@@ -216,10 +184,6 @@ func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(KingsmanMedia)
 }
 
@@ -235,10 +199,6 @@ func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(HarryPotterMedia)
 }
 
@@ -254,10 +214,6 @@ func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(MenInBlackMedia)
 }
 
@@ -273,10 +229,6 @@ func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(MiscMedia)
 }
 
@@ -293,10 +245,6 @@ func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("this is a database lookup error for the InitSciFiHandler function")
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(SciFiMedia)
 }
 
@@ -312,10 +260,6 @@ func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(StarTrekMedia)
 }
 
@@ -331,10 +275,6 @@ func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(StarWarsMedia)
 }
 
@@ -350,10 +290,6 @@ func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(SuperHerosMedia)
 }
 
@@ -369,10 +305,6 @@ func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(TremorsMedia)
 }
 
@@ -388,10 +320,6 @@ func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(JohnWickMedia)
 }
 
@@ -407,10 +335,6 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(PiratesMedia)
 }
 
@@ -426,10 +350,6 @@ func intDieHardHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(DieHardMedia)
 }
 
@@ -467,9 +387,6 @@ func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	Abody := string(body)
 	fmt.Printf("this is mediainfo sent to browser: %s", Abody)
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&MediaInfo)
 }
 
@@ -501,9 +418,6 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	Abody := string(body)
 	fmt.Println(Abody)
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(mf)
 }
 
@@ -521,9 +435,6 @@ func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("MOVIEGOBS_MovSETUP environment variable is not set, starting MovSETUP")
 		exitstatus = movgo.MovSetUp()
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(exitstatus)
 }
 
@@ -539,10 +450,8 @@ func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
 
 // MovUpdateHandler needs exporting because I want it
 func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	movgo.MovUpdate()
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode("0")
 }
 
@@ -561,29 +470,25 @@ func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
 
 //MovDBCountHandler bla bla
 func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	ses := dBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
 	foo, err := MTc.Count()
 	if err != nil {
-		w.Header().Set("Access-Control-Allow-Headers", "*")
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Content-Type", "application/json")
+		// w.Header().Set("Access-Control-Allow-Headers", "*")
+		// w.Header().Set("Access-Control-Allow-Origin", "*")
+		// w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(0)
 		log.Println(err)
 	}
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(foo)
 }
 
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	status := os.Getenv("MOVIEGOBS_MovSETUP")
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(status)
 }
 
@@ -599,6 +504,7 @@ func DBcon() *mgo.Session {
 }
 
 func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -619,14 +525,11 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&STTVMedia)
 }
 
 func intTNGHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -646,14 +549,11 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&nextGenerationMedia)
 }
 
 func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -673,14 +573,11 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&enterpriseMedia)
 }
 
 func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -700,14 +597,11 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&discoveryMedia)
 }
 
 func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -727,15 +621,12 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&voyagerMedia)
 
 }
 
 func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -755,14 +646,11 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&lastshipMedia)
 }
 
 func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -782,15 +670,12 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&OrvilleMedia)
 }
 
 
 func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -811,18 +696,12 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(errG)
 	}
 	fmt.Println(&LostInSpaceMedia)
-	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Cache-Control", "max-age=370739520, public")
 	json.NewEncoder(w).Encode(&LostInSpaceMedia)
 }
 
-
-
-
 //TVSetUpHandler Setups the db with newly added music
 func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	val, _ := os.LookupEnv("TVGOBS_SETUP")
 	var exitstatus int
 	if val == "0" {
@@ -834,9 +713,6 @@ func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("TVGOBS_SETUP environment variable is not set, starting SETUP")
 		exitstatus = tvgo.TVSetUp()
 	}
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(exitstatus)
 }
 
@@ -851,36 +727,30 @@ func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
 
 //TVDBCountHandler bla bla
 func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	ses := DBcon()
 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
 	if err != nil {
-		w.Header().Set("Access-Control-Allow-Headers", "*")
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Content-Type", "application/json")
+		// w.Header().Set("Access-Control-Allow-Headers", "*")
+		// w.Header().Set("Access-Control-Allow-Origin", "*")
+		// w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(-0)
 		log.Println(err)
 	}
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(foo)
 }
 
 //TVMovTV bla bla
 func TVMovTV(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	status := os.Getenv("TVGOBS_MovSETUP")
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(status)
 }
 
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
 	status := os.Getenv("TVGOBS_SETUP")
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(status)
 }
 
