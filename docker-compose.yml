@@ -4,58 +4,58 @@ services:
   db:
     image: andresvidal/rpi3-mongodb3:latest
     networks:
-      - moviegobs
+      - mediacenter
     ports:
       - 27017:27017
     # volumes:
     #   - mongovol:/data/db
 
-  app:
-    image: app:3.3
+  mediacenterb:
+    image: mediacenterb:0.0.1
     build: .
     environment:
-      - MOVIEGOBS_SETUP=1
-      - MOVIEGOBS_MONGODB_ADDRESS=mongodb://db:27017/moviegobs
-      - MOVIEGOBS_MONGODB_THUMB_ADDRESS=mongodb://db:27017/movbsthumb
-      - MOVIEGOBS_MOVIES_PATH=/root/fsData/Movies
-      - MOVIEGOBS_TVSHOWS_PATH=/root/fsData/TVShows
-      # - MOVIEGOBS_POSTERS_PATH=/root/fsData/Thumbs
-      - MOVIEGOBS_HARDRIVE_POSTERS_PATH=/root/fsData/Posters2
-      # - MOVIEGOBS_HARDDRIVE_POSTERS_PATH=/root/fsData/Posters
+      - mediacenter_SETUP=1
+      - mediacenter_MONGODB_ADDRESS=mongodb://db:27017/mediacenter
+      - mediacenter_MONGODB_THUMB_ADDRESS=mongodb://db:27017/movbsthumb
+      - mediacenter_MOVIES_PATH=/root/fsData/Movies
+      - mediacenter_TVSHOWS_PATH=/root/fsData/TVShows
+      # - mediacenter_POSTERS_PATH=/root/fsData/Thumbs
+      - mediacenter_HARDRIVE_POSTERS_PATH=/root/fsData/Posters2
+      # - mediacenter_HARDDRIVE_POSTERS_PATH=/root/fsData/Posters
       
-      - MOVIEGOBS_NO_ART_PIC_PATH=./static/images/animals.jpg
-      - MOVIEGOBS_THUMB_BASE_PATH=./static/images/thumbnails
-      # - MOVIEGOBS_THUMBNAIL_PIC_PATH=./static/images/thumbnails
-      - MOVIEGOBS_THUMBNAIL_PIC_PATH=/static
-      - MOVIEGOBS_TEMPLATE_ADDRESS=./static/templates/moviegobs.template
-      - MOVIEGOBS_SERVER_PORT=8888
-      - MOVIEGOBS_SERVER_ADDRESS=http://192.168.0.26
-      - MOVIEGOBS_OMXPLAYER_ADDRESS=http://192.168.0.42:8181/OmxplayerPlayMedia
-      - MOVIEGOBS_OMXPLAYER_ADDRESS_REACT=http://192.168.0.42:8181/OmxplayerPlayMediaReact
+      - mediacenter_NO_ART_PIC_PATH=./static/images/animals.jpg
+      - mediacenter_THUMB_BASE_PATH=./static/images/thumbnails
+      # - mediacenter_THUMBNAIL_PIC_PATH=./static/images/thumbnails
+      - mediacenter_THUMBNAIL_PIC_PATH=/static
+      - mediacenter_TEMPLATE_ADDRESS=./static/templates/mediacenter.template
+      - mediacenter_SERVER_PORT=8888
+      - mediacenter_SERVER_ADDRESS=http://192.168.0.26
+      - mediacenter_OMXPLAYER_ADDRESS=http://192.168.0.42:8181/OmxplayerPlayMedia
+      - mediacenter_OMXPLAYER_ADDRESS_REACT=http://192.168.0.42:8181/OmxplayerPlayMediaReact
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
     networks:
-      - moviegobs
+      - mediacenter
     ports:
       - 8888:8888
     volumes:
-      - moviegobsvol:/root/fsData/
-      - moviegobspicvol:/root/static/
+      - mediacentervol:/root/fsData/
+      - mediacenterpicvol:/root/static/
     depends_on:
       - db
 
 networks:
-  moviegobs:
+  mediacenter:
 
 volumes:
-  moviegobsvol:
+  mediacentervol:
     driver: local
     driver_opts:
       type: none
       device: /media/pi/FOO
       o: bind
 
-  moviegobspicvol:
+  mediacenterpicvol:
     driver: local
     driver_opts:
       type: none
