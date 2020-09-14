@@ -15,7 +15,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
-COPY --from=builder /go/main .
+COPY --from=builder /go/src/main .
 RUN \
   mkdir ./static && \
   chmod -R +rwx ./static && \
