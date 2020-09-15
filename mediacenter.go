@@ -796,7 +796,7 @@ func main() {
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 
-	// r.HandleFunc("/TVSetUp", TVSetUpHandler)
+	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	// need to add UpDate
 	
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
