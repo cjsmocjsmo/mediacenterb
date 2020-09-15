@@ -52,7 +52,8 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /media/pi/PiTB/media
+      device: /media/pi/FOO/media
+      # device: /media/pi/PiTB/media
       o: bind
 
   mediacenterpicvol:
