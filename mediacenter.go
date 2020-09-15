@@ -492,16 +492,16 @@ func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(status)
 }
 
-// DBcon is exported because I want it
-func DBcon() *mgo.Session {
-	s, err := mgo.Dial(os.Getenv("TVGOBS_MONGODB_ADDRESS"))
-	if err != nil {
-		fmt.Println("Session creation dial error")
-		fmt.Println(err)
-	}
-	fmt.Println("Session Connection to db established")
-	return s
-}
+// dBcon is exported because I want it
+// func dBcon() *mgo.Session {
+// 	s, err := mgo.Dial(os.Getenv("TVGOBS_MONGODB_ADDRESS"))
+// 	if err != nil {
+// 		fmt.Println("Session creation dial error")
+// 		fmt.Println(err)
+// 	}
+// 	fmt.Println("Session Connection to db established")
+// 	return s
+// }
 
 func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -514,7 +514,7 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var STTVMedia []map[string]string
@@ -539,7 +539,7 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var nextGenerationMedia []map[string]string
@@ -563,7 +563,7 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var enterpriseMedia []map[string]string
@@ -587,7 +587,7 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var discoveryMedia []map[string]string
@@ -611,7 +611,7 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var voyagerMedia []map[string]string
@@ -636,7 +636,7 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var lastshipMedia []map[string]string
@@ -660,7 +660,7 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTtc := ses.DB("tvgobs").C("tvgobs")
 	var OrvilleMedia []map[string]string
@@ -685,7 +685,7 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := DBcon()
+	ses := dBcon()
 	defer ses.Close()
 	MTtc := ses.DB("tvgobs").C("tvgobs")
 	var LostInSpaceMedia []map[string]string
@@ -718,7 +718,7 @@ func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 
 //DropTVDataBaseHandler is crap
 func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
-	sess := DBcon()
+	sess := dBcon()
 	err := sess.DB("tvgobs").DropDatabase()
 	if err != nil {
 		fmt.Println(err)
@@ -728,7 +728,7 @@ func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
 //TVDBCountHandler bla bla
 func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := DBcon()
+	ses := dBcon()
 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
 	if err != nil {
 		// w.Header().Set("Access-Control-Allow-Headers", "*")
