@@ -34,8 +34,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// dBcon is exported because I want it
-func dBcon() *mgo.Session {
+// DBcon is exported because I want it
+func DBcon() *mgo.Session {
 	s, err := mgo.Dial(os.Getenv("MEDIACENTER_MONGODB_ADDRESS"))
 	if err != nil {
 		log.Println("Session creation dial error")
@@ -45,7 +45,7 @@ func dBcon() *mgo.Session {
 	return s
 }
 
-func setHeaders(w http.ResponseWriter) ( http.ResponseWriter ) {
+func setHeaders(w http.ResponseWriter) http.ResponseWriter {
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
@@ -55,9 +55,9 @@ func setHeaders(w http.ResponseWriter) ( http.ResponseWriter ) {
 
 func intActionHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var ActionMedia []map[string]string
 	b1 := bson.M{"catagory": "Action"}
 	b2 := bson.M{"_id": 0}
@@ -70,9 +70,9 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 
 func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	b1 := bson.M{"catagory": "Cartoons"}
 	b2 := bson.M{"_id": 0}
 	var CartoonMedia []map[string]string
@@ -85,9 +85,9 @@ func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 
 func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var ComedyMedia []map[string]string
 	b1 := bson.M{"catagory": "Comedy"}
 	b2 := bson.M{"_id": 0}
@@ -100,9 +100,9 @@ func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 
 func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var DramaMedia []map[string]string
 	b1 := bson.M{"catagory": "Drama"}
 	b2 := bson.M{"_id": 0}
@@ -115,9 +115,9 @@ func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 
 func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var GodzillaMedia []map[string]string
 	b1 := bson.M{"catagory": "Godzilla"}
 	b2 := bson.M{"_id": 0}
@@ -130,9 +130,9 @@ func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 
 func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTrc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTrc := ses.DB("moviegobs").C("moviegobs")
 	var IndianaJonesMedia []map[string]string
 	b1 := bson.M{"catagory": "IndianaJones"}
 	b2 := bson.M{"_id": 0}
@@ -145,9 +145,9 @@ func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 
 func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var JohnWayneMedia []map[string]string
 	b1 := bson.M{"catagory": "JohnWayne"}
 	b2 := bson.M{"_id": 0}
@@ -160,9 +160,9 @@ func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 
 func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var JurassicParkMedia []map[string]string
 	b1 := bson.M{"catagory": "JurassicPark"}
 	b2 := bson.M{"_id": 0}
@@ -175,9 +175,9 @@ func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 
 func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var KingsmanMedia []map[string]string
 	b1 := bson.M{"catagory": "Kingsman"}
 	b2 := bson.M{"_id": 0}
@@ -190,9 +190,9 @@ func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 
 func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var HarryPotterMedia []map[string]string
 	b1 := bson.M{"catagory": "HarryPotter"}
 	b2 := bson.M{"_id": 0}
@@ -205,9 +205,9 @@ func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 
 func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var MenInBlackMedia []map[string]string
 	b1 := bson.M{"catagory": "MenInBlack"}
 	b2 := bson.M{"_id": 0}
@@ -220,9 +220,9 @@ func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 
 func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var MiscMedia []map[string]string
 	b1 := bson.M{"catagory": "Misc"}
 	b2 := bson.M{"_id": 0}
@@ -235,9 +235,9 @@ func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 
 func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var SciFiMedia []map[string]string
 	b1 := bson.M{"catagory": "SciFi"}
 	b2 := bson.M{"_id": 0}
@@ -251,9 +251,9 @@ func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 
 func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var StarTrekMedia []map[string]string
 	b1 := bson.M{"catagory": "StarTrek"}
 	b2 := bson.M{"_id": 0}
@@ -266,9 +266,9 @@ func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 
 func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var StarWarsMedia []map[string]string
 	b1 := bson.M{"catagory": "StarWars"}
 	b2 := bson.M{"_id": 0}
@@ -281,9 +281,9 @@ func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 
 func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var SuperHerosMedia []map[string]string
 	b1 := bson.M{"catagory": "SuperHeros"}
 	b2 := bson.M{"_id": 0}
@@ -296,9 +296,9 @@ func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 
 func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var TremorsMedia []map[string]string
 	b1 := bson.M{"catagory": "Tremors"}
 	b2 := bson.M{"_id": 0}
@@ -311,9 +311,9 @@ func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 
 func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var JohnWickMedia []map[string]string
 	b1 := bson.M{"catagory": "JohnWick"}
 	b2 := bson.M{"_id": 0}
@@ -326,9 +326,9 @@ func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 
 func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var PiratesMedia []map[string]string
 	b1 := bson.M{"catagory": "Pirates"}
 	b2 := bson.M{"_id": 0}
@@ -341,9 +341,9 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 
 func intDieHardHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	var DieHardMedia []map[string]string
 	b1 := bson.M{"catagory": "DieHard"}
 	b2 := bson.M{"_id": 0}
@@ -362,17 +362,17 @@ func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	m, _ := url.ParseQuery(u.RawQuery)
 	mf := m["movie"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	var MediaInfo map[string]string
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	b1 := bson.M{"movfspath": mf}
 	b2 := bson.M{"_id": 0}
 	err = MTc.Find(b1).Select(b2).One(&MediaInfo)
 	if err != nil {
 		fmt.Println(err)
 	}
-	omxAddr := os.Getenv("MEDIACENTER_OMXPLAYER_ADDRESS")
+	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS")
 	u, _ = url.Parse(omxAddr)
 	q, _ := url.ParseQuery(u.RawQuery)
 	q.Add("medPath", omxAddr)
@@ -399,7 +399,7 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	m, _ := url.ParseQuery(u.RawQuery)
 	mf := m["movie"]
-	omxAddr := os.Getenv("MEDIACENTER_OMXPLAYER_ADDRESS_REACT")
+	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS_REACT")
 	u, _ = url.Parse(omxAddr)
 	q, _ := url.ParseQuery(u.RawQuery)
 	q.Add("medPath", mf[0])
@@ -425,15 +425,15 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 //MovSetUpHandler Movupdates the db with newly added music
 func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	val, _ := os.LookupEnv("MEDIACENTER_MovSETUP")
+	val, _ := os.LookupEnv("moviegobs_MovSETUP")
 	var exitstatus int
 	if val == "0" {
 		fmt.Println("Ok is Ok")
-		log.Println("MEDIACENTER_MovSETUP environment variable is set, starting MOVIEGO")
+		log.Println("moviegobs_MovSETUP environment variable is set, starting MOVIEGO")
 		exitstatus = 0
 	} else {
 		fmt.Println("not OK")
-		log.Println("MEDIACENTER_MovSETUP environment variable is not set, starting MovSETUP")
+		log.Println("moviegobs_MovSETUP environment variable is not set, starting MovSETUP")
 		exitstatus = movgo.MovSetUp()
 	}
 	json.NewEncoder(w).Encode(exitstatus)
@@ -472,9 +472,9 @@ func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
 //MovDBCountHandler bla bla
 func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
-	MTc := ses.DB("MEDIACENTER").C("MEDIACENTER")
+	MTc := ses.DB("moviegobs").C("moviegobs")
 	foo, err := MTc.Count()
 	if err != nil {
 		// w.Header().Set("Access-Control-Allow-Headers", "*")
@@ -489,12 +489,12 @@ func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	status := os.Getenv("MEDIACENTER_MovSETUP")
+	status := os.Getenv("moviegobs_MovSETUP")
 	json.NewEncoder(w).Encode(status)
 }
 
-// dBcon is exported because I want it
-// func dBcon() *mgo.Session {
+// DBcon is exported because I want it
+// func DBcon() *mgo.Session {
 // 	s, err := mgo.Dial(os.Getenv("TVGOBS_MONGODB_ADDRESS"))
 // 	if err != nil {
 // 		fmt.Println("Session creation dial error")
@@ -515,7 +515,7 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var STTVMedia []map[string]string
@@ -540,7 +540,7 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var nextGenerationMedia []map[string]string
@@ -564,7 +564,7 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var enterpriseMedia []map[string]string
@@ -588,7 +588,7 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var discoveryMedia []map[string]string
@@ -612,7 +612,7 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var voyagerMedia []map[string]string
@@ -637,7 +637,7 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var lastshipMedia []map[string]string
@@ -661,7 +661,7 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTtc := ses.DB("tvgobs").C("tvgobs")
 	var OrvilleMedia []map[string]string
@@ -686,7 +686,7 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
-	ses := dBcon()
+	ses := DBcon()
 	defer ses.Close()
 	MTtc := ses.DB("tvgobs").C("tvgobs")
 	var LostInSpaceMedia []map[string]string
@@ -719,7 +719,7 @@ func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 
 //DropTVDataBaseHandler is crap
 func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
-	sess := dBcon()
+	sess := DBcon()
 	err := sess.DB("tvgobs").DropDatabase()
 	if err != nil {
 		fmt.Println(err)
@@ -729,7 +729,7 @@ func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
 //TVDBCountHandler bla bla
 func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	ses := dBcon()
+	ses := DBcon()
 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
 	if err != nil {
 		// w.Header().Set("Access-Control-Allow-Headers", "*")
@@ -742,11 +742,11 @@ func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //TVMovTV bla bla
-func TVMovTV(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
-	status := os.Getenv("TVGOBS_MovSETUP")
-	json.NewEncoder(w).Encode(status)
-}
+// func TVMovTV(w http.ResponseWriter, r *http.Request) {
+// 	setHeaders(w)
+// 	status := os.Getenv("TVGOBS_MovSETUP")
+// 	json.NewEncoder(w).Encode(status)
+// }
 
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
@@ -785,7 +785,7 @@ func main() {
 	r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
-
+	//TVGOBS_SETUP
 	r.HandleFunc("/intSTTV", intSTTVHandler)
 	r.HandleFunc("/intTNG", intTNGHandler)
 	r.HandleFunc("/intEnterprise", intEnterpriseHandler)
