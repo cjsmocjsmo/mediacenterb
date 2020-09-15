@@ -35,7 +35,7 @@ import (
 )
 
 func dBcon() *mgo.Session {
-	s, err := mgo.Dial(os.Getenv("MOVIEGOBS_MONGODB_ADDRESS"))
+	s, err := mgo.Dial(os.Getenv("MEDIACENTER_MONGODB_ADDRESS"))
 	if err != nil {
 		log.Println("Session creation dial error")
 		log.Println(err)
