@@ -489,7 +489,7 @@ func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	status := os.Getenv("moviegobs_MovSETUP")
+	status := os.Getenv("MEDIACENTER_SETUP")
 	json.NewEncoder(w).Encode(status)
 }
 
