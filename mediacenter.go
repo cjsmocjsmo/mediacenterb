@@ -751,7 +751,7 @@ func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
-	status := os.Getenv("TVGOBS_SETUP")
+	status := os.Getenv("MOVIECENTER_TVGO_SETUP")
 	json.NewEncoder(w).Encode(status)
 }
 

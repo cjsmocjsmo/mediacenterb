@@ -15,6 +15,7 @@ services:
     build: .
     environment:
       - MEDIACENTER_SETUP=1
+      - MEDIACENTER_TVGO_SETUP=1
       - MEDIACENTER_MONGODB_ADDRESS=mongodb://db:27017/mediacenter
       - MEDIACENTER_MONGODB_THUMB_ADDRESS=mongodb://db:27017/movbsthumb
       - MEDIACENTER_MOVIES_PATH=/root/fsData/Movies
