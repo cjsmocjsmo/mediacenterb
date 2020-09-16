@@ -399,7 +399,7 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	m, _ := url.ParseQuery(u.RawQuery)
 	mf := m["movie"]
-	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS_REACT")
+	omxAddr := os.Getenv("MEDIACENTER_OMXPLAYER_ADDRESS_REACT")
 	u, _ = url.Parse(omxAddr)
 	q, _ := url.ParseQuery(u.RawQuery)
 	q.Add("medPath", mf[0])
