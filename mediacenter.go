@@ -641,7 +641,7 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var lastshipMedia []map[string]string
-	b1 := bson.M{"catagory": "LastShip", "season": s1}
+	b1 := bson.M{"catagory": "Last Ship", "season": s1}
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lastshipMedia)
 	if errG != nil {
