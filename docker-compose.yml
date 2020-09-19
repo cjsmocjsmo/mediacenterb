@@ -11,7 +11,7 @@ services:
     #   - mongovol:/data/db
 
   mediacenterb:
-    image: mediacenterb:0.0.6
+    image: mediacenterb:0.0.7
     build: .
     environment:
       - MEDIACENTER_SETUP=1
@@ -20,13 +20,9 @@ services:
       - MEDIACENTER_MONGODB_THUMB_ADDRESS=mongodb://db:27017/movbsthumb
       - MEDIACENTER_MOVIES_PATH=/root/fsData/Movies
       - MEDIACENTER_TVSHOWS_PATH=/root/fsData/TVShows
-      # - MEDIACENTER_POSTERS_PATH=/root/fsData/Thumbs
       - MEDIACENTER_HARDRIVE_POSTERS_PATH=/root/fsData/Posters2
-      # - MEDIACENTER_HARDDRIVE_POSTERS_PATH=/root/fsData/Posters
-      
       - MEDIACENTER_NO_ART_PIC_PATH=./static/images/animals.jpg
       - MEDIACENTER_THUMB_BASE_PATH=./static/images/thumbnails
-      # - MEDIACENTER_THUMBNAIL_PIC_PATH=./static/images/thumbnails
       - MEDIACENTER_THUMBNAIL_PIC_PATH=/static
       - MEDIACENTER_TEMPLATE_ADDRESS=./static/templates/mediacenter.template
       - MEDIACENTER_SERVER_PORT=8888

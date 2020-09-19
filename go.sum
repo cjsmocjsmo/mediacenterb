@@ -1,5 +1,7 @@
 github.com/cjsmocjsmo/movgo v0.0.5 h1:jKeh4usROH3wUTxmXCnR0yDEfp8VSX/Avm4TheoNBBc=
 github.com/cjsmocjsmo/movgo v0.0.5/go.mod h1:8gap/s3NlmifvhCVkxlZt9y3iXuCGsj+XTV4AdptRXo=
+github.com/cjsmocjsmo/movgo v0.0.6 h1:gYtIGRViHDSNvsRaY8QuQner2qj0Ff/PmtRmXi34L0w=
+github.com/cjsmocjsmo/movgo v0.0.6/go.mod h1:8gap/s3NlmifvhCVkxlZt9y3iXuCGsj+XTV4AdptRXo=
 github.com/cjsmocjsmo/tvgo v0.0.7 h1:ZS8RYmroKQ0MJn5SF5kA1Ice2uywnsEGZvo4pFNZ8Y8=
 github.com/cjsmocjsmo/tvgo v0.0.7/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1ei82L+c=
