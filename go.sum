@@ -10,6 +10,8 @@ github.com/cjsmocjsmo/tvgo v0.1.1 h1:N+gMcyVMRg7hiiWDaGMy7YYR2Tc5Z7mdyBH29/3Mbjo
 github.com/cjsmocjsmo/tvgo v0.1.1/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.1.2 h1:WsSJIbIaPChRjc6qUYn80jhSgWnyNY9tw9XB1x8RN0M=
 github.com/cjsmocjsmo/tvgo v0.1.2/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v0.1.4 h1:Fy8KI7fUG6AErWieY++Y0cXm2fKO7wz8rwAjs1iHBUE=
+github.com/cjsmocjsmo/tvgo v0.1.4/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1ei82L+c=
 github.com/disintegration/imaging v1.6.2/go.mod h1:44/5580QXChDfwIclfc/PCwrr44amcmDAg8hxG0Ewe4=
 github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 h1:DujepqpGd1hyOd7aW59XpK7Qymp8iy83xq74fLr21is=
