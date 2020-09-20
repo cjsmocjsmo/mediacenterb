@@ -11,7 +11,7 @@ services:
     #   - mongovol:/data/db
 
   mediacenterb:
-    image: mediacenterb:0.0.11
+    image: mediacenterb:0.1.0
     build: .
     environment:
       - MEDIACENTER_SETUP=1
