@@ -700,6 +700,31 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&LostInSpaceMedia)
 }
 
+
+func intPicardHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	ses := DBcon()
+	defer ses.Close()
+	MTtc := ses.DB("tvgobs").C("tvgobs")
+	var PicardMedia []map[string]string
+	b1 := bson.M{"catagory": "Picard", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTtc.Find(b1).Select(b2).All(&PicardMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	fmt.Println(&PicardMedia)
+	json.NewEncoder(w).Encode(&PicardMedia)
+}
 //TVSetUpHandler Setups the db with newly added music
 func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -796,7 +821,7 @@ func main() {
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
-
+	r.HandleFunc("/intPicard", intPicardHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	// need to add UpDate
 	
