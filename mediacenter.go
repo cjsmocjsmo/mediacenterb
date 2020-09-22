@@ -354,6 +354,28 @@ func intDieHardHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(DieHardMedia)
 }
 
+
+func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var FantasyMedia []map[string]string
+	b1 := bson.M{"catagory": "DieHard"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&FantasyMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(FantasyMedia)
+}
+
+
+
+
+
+
+
 func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -813,6 +835,9 @@ func main() {
 	r.HandleFunc("/intCartoons", intCartoonsHandler)
 	r.HandleFunc("/intComedy", intComedyHandler)
 	r.HandleFunc("/intDrama", intDramaHandler)
+
+	r.HandleFunc("/intFantasy", intFantasyHandler)
+
 	r.HandleFunc("/intGodzilla", intGodzillaHandler)
 	r.HandleFunc("/intHarryPotter", intHarryPotterHandler)
 	r.HandleFunc("/intIndianaJones", intIndianaJonesHandler)
