@@ -361,7 +361,7 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
 	var FantasyMedia []map[string]string
-	b1 := bson.M{"catagory": "DieHard"}
+	b1 := bson.M{"catagory": "Fantasy"}
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&FantasyMedia)
 	if err != nil {
