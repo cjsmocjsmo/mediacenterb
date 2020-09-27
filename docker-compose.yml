@@ -11,7 +11,7 @@ services:
     #   - mongovol:/data/db
 
   mediacenterb:
-    image: mediacenterb:0.1.4
+    image: mediacenterb:0.1.5
     build: .
     environment:
       - MEDIACENTER_SETUP=1
@@ -49,8 +49,8 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /media/pi/FOO/media
-      # device: /media/pi/PiTB/media
+      # device: /media/pi/FOO/media
+      device: /media/pi/PiTB/media
       o: bind
 
   mediacenterpicvol:
