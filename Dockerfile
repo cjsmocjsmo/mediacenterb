@@ -27,3 +27,4 @@ RUN \
   chmod -R +rwx ./logs/moviegobs_log.txt
   
 CMD ["./main"]
+STOPSIGNAL SIGINT
