@@ -22,16 +22,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"github.com/cjsmocjsmo/movgo"
 	"github.com/cjsmocjsmo/tvgo"
-	"net/http"
-	"net/url"
-	"os"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/mux"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
+	"os"
 )
 
 // DBcon is exported because I want it
@@ -354,7 +354,6 @@ func intDieHardHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(DieHardMedia)
 }
 
-
 func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	ses := DBcon()
@@ -369,12 +368,6 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(FantasyMedia)
 }
-
-
-
-
-
-
 
 func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -461,35 +454,12 @@ func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(exitstatus)
 }
 
-
-
-
-
-
-
-
-
-
-
 // MovUpdateHandler needs exporting because I want it
 func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	movgo.MovUpdate()
 	json.NewEncoder(w).Encode("0")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //MovDBCountHandler bla bla
 func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
@@ -696,7 +666,6 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&OrvilleMedia)
 }
 
-
 func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -721,7 +690,6 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(&LostInSpaceMedia)
 	json.NewEncoder(w).Encode(&LostInSpaceMedia)
 }
-
 
 func intPicardHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -773,7 +741,6 @@ func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&MandalorianMedia)
 }
 
-
 func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -797,9 +764,6 @@ func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&alteredcarbonMedia)
 }
-
-
-
 
 //TVSetUpHandler Setups the db with newly added music
 func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
@@ -905,11 +869,11 @@ func main() {
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	// need to add UpDate
-	
+
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
 	r.HandleFunc("/TVSetupStatus", TVSetupStatusHandler)
-	
+
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
 	http.ListenAndServe(":8888", (r))
