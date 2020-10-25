@@ -820,6 +820,14 @@ func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(status)
 }
 
+
+func init() {
+	movgo.MovSetUp()
+	tvgo.TVSetUp()
+
+}
+
+
 func main() {
 	r := mux.NewRouter()
 	s := r.PathPrefix("/static").Subrouter()
