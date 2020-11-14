@@ -369,6 +369,60 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(FantasyMedia)
 }
 
+
+func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var RiddickMedia []map[string]string
+	b1 := bson.M{"catagory": "Riddick"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&RiddickMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(RiddickMedia)
+}
+
+
+func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var TCMedia []map[string]string
+	b1 := bson.M{"catagory": "TomCruize"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&TCMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(TCMedia)
+}
+
+
+func intXMenHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var XMenMedia []map[string]string
+	b1 := bson.M{"catagory": "XMen"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&XMenMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(XMenMedia)
+}
+
+
+
+
+
+
+
 func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -878,12 +932,19 @@ func main() {
 	r.HandleFunc("/intJohnWick", intJohnWickHandler)
 	r.HandleFunc("/intPirates", intPiratesHandler)
 	r.HandleFunc("/intDieHard", intDieHardHandler)
+
+	r.HandleFunc("/intRiddick", intRiddickHandler)
+	r.HandleFunc("/intTomCruize", intTomCruizeHandler)
+	r.HandleFunc("/intXMen", intXMenHandler)
+
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	r.HandleFunc("/MovDBCount", MovDBCountHandler)
 	// r.HandleFunc("/MovSetupVariable", MovSetupVariableHandler)
 	r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
+
+//X-Men TomCruize Riddick
 
 	//TVGOBS_SETUP
 	r.HandleFunc("/intSTTV", intSTTVHandler)
@@ -901,12 +962,9 @@ func main() {
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
-	// need to add UpDate
-
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
 	r.HandleFunc("/TVSetupStatus", TVSetupStatusHandler)
-
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
 	http.ListenAndServe(":8888", (r))
