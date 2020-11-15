@@ -913,9 +913,7 @@ func main() {
 	r.HandleFunc("/intCartoons", intCartoonsHandler)
 	r.HandleFunc("/intComedy", intComedyHandler)
 	r.HandleFunc("/intDrama", intDramaHandler)
-
 	r.HandleFunc("/intFantasy", intFantasyHandler)
-
 	r.HandleFunc("/intGodzilla", intGodzillaHandler)
 	r.HandleFunc("/intHarryPotter", intHarryPotterHandler)
 	r.HandleFunc("/intIndianaJones", intIndianaJonesHandler)
