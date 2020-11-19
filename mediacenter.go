@@ -843,6 +843,30 @@ func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&lowerdecksMedia)
 }
 
+func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var raisedbywolvesMedia []map[string]string
+	b1 := bson.M{"catagory": "RaisedByWolves", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&raisedbywolvesMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&raisedbywolvesMedia)
+}
+
 //TVSetUpHandler Setups the db with newly added music
 func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -959,6 +983,8 @@ func main() {
 	r.HandleFunc("/intMandalorian", intMandalorianHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
+
+	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)  
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
