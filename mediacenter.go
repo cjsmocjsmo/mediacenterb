@@ -1070,8 +1070,8 @@ func main() {
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
 
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
-	r.HandleFunc("/intRaisedByWolves", intSpaceTimeHandler)
-	r.HandleFunc("/intRaisedByWolves", intSeanCarrolHandler)
+	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
+	r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
 	
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
