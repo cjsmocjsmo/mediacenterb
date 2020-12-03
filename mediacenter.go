@@ -339,7 +339,7 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(PiratesMedia)
 }
 
-func intDieHardHandler(w http.ResponseWriter, r *http.Request) {
+func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
@@ -416,6 +416,37 @@ func intXMenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(XMenMedia)
 }
+
+func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var DocumentaryMedia []map[string]string
+	b1 := bson.M{"catagory": "XMen"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&DocumentaryMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(DocumentaryMedia)
+}
+
+func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var TheRockMedia []map[string]string
+	b1 := bson.M{"catagory": "XMen"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&TheRockMedia)
+	if err != nil {
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(TheRockMedia)
+}
+
 
 
 
@@ -953,11 +984,15 @@ func main() {
 	r.HandleFunc("/intTremors", intTremorsHandler)
 	r.HandleFunc("/intJohnWick", intJohnWickHandler)
 	r.HandleFunc("/intPirates", intPiratesHandler)
-	r.HandleFunc("/intDieHard", intDieHardHandler)
+	r.HandleFunc("/intBruceWillis", intBruceWillisHandler)
 
 	r.HandleFunc("/intRiddick", intRiddickHandler)
 	r.HandleFunc("/intTomCruize", intTomCruizeHandler)
 	r.HandleFunc("/intXMen", intXMenHandler)
+
+	r.HandleFunc("/intDocumentary", intDocumentaryHandler)
+	r.HandleFunc("/intTheRock", intTheRockHandler)
+
 
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
