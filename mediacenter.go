@@ -423,7 +423,7 @@ func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
 	var DocumentaryMedia []map[string]string
-	b1 := bson.M{"catagory": "XMen"}
+	b1 := bson.M{"catagory": "Documentary"}
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&DocumentaryMedia)
 	if err != nil {
@@ -438,7 +438,7 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
 	var TheRockMedia []map[string]string
-	b1 := bson.M{"catagory": "XMen"}
+	b1 := bson.M{"catagory": "TheRock"}
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&TheRockMedia)
 	if err != nil {
