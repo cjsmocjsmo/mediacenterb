@@ -899,6 +899,7 @@ func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting initForAllManKind")
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
@@ -909,6 +910,7 @@ func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(eff)
 	}
 	s1 := m["season"][0]
+	fmt.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1074,11 +1076,8 @@ func main() {
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	r.HandleFunc("/MovDBCount", MovDBCountHandler)
-	// r.HandleFunc("/MovSetupVariable", MovSetupVariableHandler)
 	r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
-
-//X-Men TomCruize Riddick
 
 	//TVGOBS_SETUP
 	r.HandleFunc("/intSTTV", intSTTVHandler)
