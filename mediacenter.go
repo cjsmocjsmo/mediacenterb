@@ -924,7 +924,31 @@ func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&forallmankindMedia)
 }
 
-
+func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting initAlienWorlds")
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var alienworldsMedia []map[string]string
+	b1 := bson.M{"catagory": "AlienWorlds", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&alienworldsMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&alienworldsMedia)
+}
 
 
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
@@ -1096,6 +1120,7 @@ func main() {
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
 	
 	r.HandleFunc("/intForAllManKind", intForAllManKindHandler)
+	r.HandleFunc("/intAlienWorlds", intAlienWorldsHandler)
 
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
 	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
