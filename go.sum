@@ -6,6 +6,10 @@ github.com/cjsmocjsmo/tvgo v0.3.1 h1:xO8LjYqNAZ6Hxkq/yfNfJJCog4Ah4us0NufkGl1pgKU
 github.com/cjsmocjsmo/tvgo v0.3.1/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.3.2 h1:cuviaA6M0ytApeh+Gx+ImWrOERBHhpxHi8nGtMLEIYo=
 github.com/cjsmocjsmo/tvgo v0.3.2/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v0.3.3 h1:xuP7GZzwR9jomhzkiXTiBX7SJd5ZJJ5EHb12WNeJSTw=
+github.com/cjsmocjsmo/tvgo v0.3.3/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v0.3.4 h1:E1LmVW/zzVR01YqpM0I3s8OddqMpn8r0Aw5ctxTjGyI=
+github.com/cjsmocjsmo/tvgo v0.3.4/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1ei82L+c=
 github.com/disintegration/imaging v1.6.2/go.mod h1:44/5580QXChDfwIclfc/PCwrr44amcmDAg8hxG0Ewe4=
 github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 h1:DujepqpGd1hyOd7aW59XpK7Qymp8iy83xq74fLr21is=
