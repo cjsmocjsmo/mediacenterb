@@ -1,6 +1,6 @@
 module mediacenterb
 
-go 1.11.6
+go 1.11
 
 require (
 	github.com/cjsmocjsmo/movgo v0.1.0
