@@ -941,7 +941,7 @@ func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var alienworldsMedia []map[string]string
-	b1 := bson.M{"catagory": "AlienWorlds", "season": s1}
+	b1 := bson.M{"catagory": "AlienWorlds", "season": `01`}
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&alienworldsMedia)
 	if errG != nil {
