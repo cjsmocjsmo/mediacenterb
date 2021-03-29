@@ -1033,21 +1033,11 @@ func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
 	if err != nil {
-		// w.Header().Set("Access-Control-Allow-Headers", "*")
-		// w.Header().Set("Access-Control-Allow-Origin", "*")
-		// w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(-0)
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(foo)
 }
-
-//TVMovTV bla bla
-// func TVMovTV(w http.ResponseWriter, r *http.Request) {
-// 	setHeaders(w)
-// 	status := os.Getenv("TVGOBS_MovSETUP")
-// 	json.NewEncoder(w).Encode(status)
-// }
 
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
@@ -1088,15 +1078,11 @@ func main() {
 	r.HandleFunc("/intJohnWick", intJohnWickHandler)
 	r.HandleFunc("/intPirates", intPiratesHandler)
 	r.HandleFunc("/intBruceWillis", intBruceWillisHandler)
-
 	r.HandleFunc("/intRiddick", intRiddickHandler)
 	r.HandleFunc("/intTomCruize", intTomCruizeHandler)
 	r.HandleFunc("/intXMen", intXMenHandler)
-
 	r.HandleFunc("/intDocumentary", intDocumentaryHandler)
 	r.HandleFunc("/intTheRock", intTheRockHandler)
-
-
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	r.HandleFunc("/MovDBCount", MovDBCountHandler)
@@ -1118,14 +1104,11 @@ func main() {
 	r.HandleFunc("/intMandalorian", intMandalorianHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
-	
 	r.HandleFunc("/intForAllManKind", intForAllManKindHandler)
 	r.HandleFunc("/intAlienWorlds", intAlienWorldsHandler)
-
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
 	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
 	r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
-	
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
