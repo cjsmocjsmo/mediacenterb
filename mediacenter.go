@@ -32,6 +32,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"github.com/mmcdole/gofeed"
 )
 
 // DBcon is exported because I want it
@@ -369,7 +370,6 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(FantasyMedia)
 }
 
-
 func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	ses := DBcon()
@@ -385,7 +385,6 @@ func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(RiddickMedia)
 }
 
-
 func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	ses := DBcon()
@@ -400,7 +399,6 @@ func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(TCMedia)
 }
-
 
 func intXMenHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -446,13 +444,6 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(TheRockMedia)
 }
-
-
-
-
-
-
-
 
 func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -554,9 +545,6 @@ func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
 	MTc := ses.DB("moviegobs").C("moviegobs")
 	foo, err := MTc.Count()
 	if err != nil {
-		// w.Header().Set("Access-Control-Allow-Headers", "*")
-		// w.Header().Set("Access-Control-Allow-Origin", "*")
-		// w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(0)
 		log.Println(err)
 	}
@@ -569,17 +557,6 @@ func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
 	status := os.Getenv("MEDIACENTER_SETUP")
 	json.NewEncoder(w).Encode(status)
 }
-
-// DBcon is exported because I want it
-// func DBcon() *mgo.Session {
-// 	s, err := mgo.Dial(os.Getenv("TVGOBS_MONGODB_ADDRESS"))
-// 	if err != nil {
-// 		fmt.Println("Session creation dial error")
-// 		fmt.Println(err)
-// 	}
-// 	fmt.Println("Session Connection to db established")
-// 	return s
-// }
 
 func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -999,6 +976,29 @@ func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&SeanCarrolMedia)
 }
 
+func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	fp := gofeed.NewParser()
+	feed, _ := fp.ParseURL("https://yts.pm/rss")
+	// for _, f := range(feed) {
+	// 	fmt.Println(f.Title)
+	// }
+	// json.NewEncoder(w).Encode(&feed)
+	fmt.Println(feed.Title)
+	fmt.Println(feed)
+}
+
+func eztv_rssHandler(w http.ResponseWriter, r *http.Request) {
+	setHeaders(w)
+	fp := gofeed.NewParser()
+	feed, _ := fp.ParseURL("https://eztv.re/ezrss.xml")
+	// for _, f := range(feed) {
+	// 	fmt.Println(f.Title)
+	// }
+	// json.NewEncoder(w).Encode(&feed)
+	fmt.Println(feed.Title)
+}
+
 
 
 //TVSetUpHandler Setups the db with newly added music
@@ -1046,13 +1046,11 @@ func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(status)
 }
 
-
 func init() {
 	movgo.MovSetUp()
 	tvgo.TVSetUp()
 
 }
-
 
 func main() {
 	r := mux.NewRouter()
@@ -1089,6 +1087,8 @@ func main() {
 	r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
+	r.HandleFunc("/yts_rss", yts_rssHandler)
+	r.HandleFunc("/eztv_rss", eztv_rssHandler)
 	//TVGOBS_SETUP
 	r.HandleFunc("/intSTTV", intSTTVHandler)
 	r.HandleFunc("/intTNG", intTNGHandler)
