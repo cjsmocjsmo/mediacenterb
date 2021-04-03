@@ -32,7 +32,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"github.com/mmcdole/gofeed"
+	// "github.com/mmcdole/gofeed"
 )
 
 // DBcon is exported because I want it
@@ -927,6 +927,32 @@ func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&alienworldsMedia)
 }
 
+func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting initWandaVision")
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var wandavisionMedia []map[string]string
+	b1 := bson.M{"catagory": "WandaVision", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&wandavisionMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&wandavisionMedia)
+}
+
 
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -976,28 +1002,28 @@ func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&SeanCarrolMedia)
 }
 
-func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
-	fp := gofeed.NewParser()
-	feed, _ := fp.ParseURL("https://yts.pm/rss")
-	// for _, f := range(feed) {
-	// 	fmt.Println(f.Title)
-	// }
-	// json.NewEncoder(w).Encode(&feed)
-	fmt.Println(feed.Title)
-	fmt.Println(feed)
-}
+// func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
+// 	setHeaders(w)
+// 	fp := gofeed.NewParser()
+// 	feed, _ := fp.ParseURL("https://yts.pm/rss")
+// 	// for _, f := range(feed) {
+// 	// 	fmt.Println(f.Title)
+// 	// }
+// 	// json.NewEncoder(w).Encode(&feed)
+// 	fmt.Println(feed.Title)
+// 	fmt.Println(feed)
+// }
 
-func eztv_rssHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
-	fp := gofeed.NewParser()
-	feed, _ := fp.ParseURL("https://eztv.re/ezrss.xml")
-	// for _, f := range(feed) {
-	// 	fmt.Println(f.Title)
-	// }
-	// json.NewEncoder(w).Encode(&feed)
-	fmt.Println(feed.Title)
-}
+// func eztv_rssHandler(w http.ResponseWriter, r *http.Request) {
+// 	setHeaders(w)
+// 	fp := gofeed.NewParser()
+// 	feed, _ := fp.ParseURL("https://eztv.re/ezrss.xml")
+// 	// for _, f := range(feed) {
+// 	// 	fmt.Println(f.Title)
+// 	// }
+// 	// json.NewEncoder(w).Encode(&feed)
+// 	fmt.Println(feed.Title)
+// }
 
 
 
@@ -1087,8 +1113,7 @@ func main() {
 	r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
-	r.HandleFunc("/yts_rss", yts_rssHandler)
-	r.HandleFunc("/eztv_rss", eztv_rssHandler)
+	
 	//TVGOBS_SETUP
 	r.HandleFunc("/intSTTV", intSTTVHandler)
 	r.HandleFunc("/intTNG", intTNGHandler)
@@ -1109,10 +1134,14 @@ func main() {
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
 	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
 	r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
+	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
 	r.HandleFunc("/TVSetupStatus", TVSetupStatusHandler)
+	// r.HandleFunc("/yts_rss", yts_rssHandler)
+	// r.HandleFunc("/eztv_rss", eztv_rssHandler)
+
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
 	http.ListenAndServe(":8888", (r))
