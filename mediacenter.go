@@ -953,6 +953,32 @@ func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&wandavisionMedia)
 }
 
+func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting initWandaVision")
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var falconwintersoldierMedia []map[string]string
+	b1 := bson.M{"catagory": "falconwintersoldier", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&falconwintersoldierMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&falconwintersoldierMedia)
+}
+
 
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
@@ -1115,26 +1141,27 @@ func main() {
 
 	
 	//TVGOBS_SETUP
-	r.HandleFunc("/intSTTV", intSTTVHandler)
-	r.HandleFunc("/intTNG", intTNGHandler)
-	r.HandleFunc("/intEnterprise", intEnterpriseHandler)
-	r.HandleFunc("/intDiscovery", intDiscoveryHandler)
-	r.HandleFunc("/intLastShip", intLastShipHandler)
-	r.HandleFunc("/intOrville", intOrvilleHandler)
-	r.HandleFunc("/intLostInSpace", intLostInSpaceHandler)
-	r.HandleFunc("/intVoyager", intVoyagerHandler)
-	r.HandleFunc("/playMedia", playMediaHandler)
-	r.HandleFunc("/playMediaReact", playMediaReactHandler)
-	r.HandleFunc("/intPicard", intPicardHandler)
-	r.HandleFunc("/intMandalorian", intMandalorianHandler)
+	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
-	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
-	r.HandleFunc("/intForAllManKind", intForAllManKindHandler)
 	r.HandleFunc("/intAlienWorlds", intAlienWorldsHandler)
+	r.HandleFunc("/intDiscovery", intDiscoveryHandler)
+	r.HandleFunc("/intEnterprise", intEnterpriseHandler)
+	r.HandleFunc("/intForAllManKind", intForAllManKindHandler)
+	r.HandleFunc("/intLastShip", intLastShipHandler)
+	r.HandleFunc("/intLostInSpace", intLostInSpaceHandler)
+	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
+	r.HandleFunc("/intMandalorian", intMandalorianHandler)
+	r.HandleFunc("/intOrville", intOrvilleHandler)
+	r.HandleFunc("/intPicard", intPicardHandler)
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
 	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
 	r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
+	r.HandleFunc("/intSTTV", intSTTVHandler)
+	r.HandleFunc("/intTNG", intTNGHandler)
+	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
+	r.HandleFunc("/playMedia", playMediaHandler)
+	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
 	r.HandleFunc("/TVDBCount", TVDBCountHandler)
