@@ -954,7 +954,7 @@ func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting initWandaVision")
+	fmt.Println("Starting intFalconWinterSoldier")
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
@@ -970,7 +970,7 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var falconwintersoldierMedia []map[string]string
-	b1 := bson.M{"catagory": "falconwintersoldier", "season": `01`}
+	b1 := bson.M{"catagory": "FalconWinterSoldier", "season": `01`}
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&falconwintersoldierMedia)
 	if errG != nil {
