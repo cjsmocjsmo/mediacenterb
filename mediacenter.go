@@ -969,17 +969,68 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var falconwintersoldierMedia []map[string]string
+	var invincibleMedia []map[string]string
 	b1 := bson.M{"catagory": "FalconWinterSoldier", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&falconwintersoldierMedia)
+	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	json.NewEncoder(w).Encode(&falconwintersoldierMedia)
+	json.NewEncoder(w).Encode(&invincibleMedia)
+}
+
+func intInvincibleHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting intInvincible")
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var invincibleMedia []map[string]string
+	b1 := bson.M{"catagory": "Invincible", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&invincibleMedia)
 }
 
 
+func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting intTheBadBatch")
+	setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var invincibleMedia []map[string]string
+	b1 := bson.M{"catagory": "The Bad Batch", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&invincibleMedia)
+}
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -1160,6 +1211,10 @@ func main() {
 	r.HandleFunc("/intTNG", intTNGHandler)
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
+
+	r.HandleFunc("/intInvincible", intInvincibleHandler)
+	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
+
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	r.HandleFunc("/TVSetUp", TVSetUpHandler)
