@@ -1022,15 +1022,16 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var invincibleMedia []map[string]string
+	var thebadbatchMedia []map[string]string
 	b1 := bson.M{"catagory": "The Bad Batch", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
+	errG := MTyc.Find(b1).Select(b2).All(&thebadbatchMedia)
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	json.NewEncoder(w).Encode(&invincibleMedia)
+	json.NewEncoder(w).Encode(&thebadbatchMedia)
 }
+
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w)
 	u, err := url.Parse(r.URL.String())
