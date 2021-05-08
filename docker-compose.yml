@@ -7,11 +7,9 @@ services:
       - mediacenterb
     ports:
       - 27017:27017
-    # volumes:
-    #   - mongovol:/data/db
 
   mediacenterb:
-    image: mediacenterb:0.2.2
+    image: mediacenterb:0.3.0
     build: .
     environment:
       - MEDIACENTER_SETUP=1
@@ -49,7 +47,6 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      # device: /media/pi/FOO/media
       device: /media/pi/PiTB/media
       o: bind
 
