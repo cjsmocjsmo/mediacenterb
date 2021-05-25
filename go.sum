@@ -27,6 +27,8 @@ github.com/cjsmocjsmo/movgo v0.2.0 h1:hB3QTt6R27YfZukFK5w9ksOdOtcc7vpqfto+WWIAST
 github.com/cjsmocjsmo/movgo v0.2.0/go.mod h1:8gap/s3NlmifvhCVkxlZt9y3iXuCGsj+XTV4AdptRXo=
 github.com/cjsmocjsmo/movgo v0.2.1 h1:UqLDoev6wh3bNVhT70fBb9aGA5V9MP5Kjxrip3uajU4=
 github.com/cjsmocjsmo/movgo v0.2.1/go.mod h1:zhn+26s/tNVQfThCT36kqW+nm346K4Lx2+fRi7W0OHU=
+github.com/cjsmocjsmo/movgo v0.2.2 h1:mFePblyVE0+G93x1Lc1Kp1NSoDwzPC5Xc8IIRSps038=
+github.com/cjsmocjsmo/movgo v0.2.2/go.mod h1:zhn+26s/tNVQfThCT36kqW+nm346K4Lx2+fRi7W0OHU=
 github.com/cjsmocjsmo/tvgo v0.2.9 h1:UhE0Nltzvtj09GwCYWVI3N2S9uIn7j1jsW0PXHHh4Lc=
 github.com/cjsmocjsmo/tvgo v0.2.9/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.3.1 h1:xO8LjYqNAZ6Hxkq/yfNfJJCog4Ah4us0NufkGl1pgKU=
