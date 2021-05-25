@@ -5,6 +5,8 @@ github.com/andybalholm/cascadia v1.1.0 h1:BuuO6sSfQNFRu1LppgbD25Hr2vLYW25JvxHs5z
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/cjsmocjsmo/movgo v0.1.0 h1:dZWqEA3H6zUKaeySRLj/lyqGoM1Czh4EXcWd8xpnwYs=
 github.com/cjsmocjsmo/movgo v0.1.0/go.mod h1:8gap/s3NlmifvhCVkxlZt9y3iXuCGsj+XTV4AdptRXo=
+github.com/cjsmocjsmo/movgo v0.1.1 h1:N2aHPV76rza6JXpCbe6NwvWoIexnk9Tw90z6BABuGEg=
+github.com/cjsmocjsmo/movgo v0.1.1/go.mod h1:8gap/s3NlmifvhCVkxlZt9y3iXuCGsj+XTV4AdptRXo=
 github.com/cjsmocjsmo/tvgo v0.2.9 h1:UhE0Nltzvtj09GwCYWVI3N2S9uIn7j1jsW0PXHHh4Lc=
 github.com/cjsmocjsmo/tvgo v0.2.9/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.3.1 h1:xO8LjYqNAZ6Hxkq/yfNfJJCog4Ah4us0NufkGl1pgKU=
@@ -39,6 +41,8 @@ github.com/cjsmocjsmo/tvgo v0.5.0 h1:I7JUfHwq99hC/Eie5rpE+FQsF2StfqMM2RyFaVi9zzs
 github.com/cjsmocjsmo/tvgo v0.5.0/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.5.1 h1:Al3tSMYrap+2QkBh2uXdhff1VOWyizjcKpTZMd3yGe4=
 github.com/cjsmocjsmo/tvgo v0.5.1/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v0.5.2 h1:FBnVPx8ze83oNdcVC528ShKj5zWHbdUnXUdgyMsS2hk=
+github.com/cjsmocjsmo/tvgo v0.5.2/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
