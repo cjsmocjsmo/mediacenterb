@@ -27,6 +27,7 @@ import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/mux"
+	"github.com/gorilla/handlers"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -46,16 +47,16 @@ func DBcon() *mgo.Session {
 	return s
 }
 
-func setHeaders(w http.ResponseWriter) http.ResponseWriter {
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", "max-age=370739520, public")
-	return w
-}
+// func setHeaders(w http.ResponseWriter) http.ResponseWriter {
+// 	w.Header().Set("Access-Control-Allow-Headers", "*")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// 	w.Header().Set("Content-Type", "application/json")
+// 	w.Header().Set("Cache-Control", "max-age=370739520, public")
+// 	return w
+// }
 
 func intActionHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -70,7 +71,7 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -85,7 +86,7 @@ func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intComedyHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -100,7 +101,7 @@ func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intDramaHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -115,7 +116,7 @@ func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -130,7 +131,7 @@ func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTrc := ses.DB("moviegobs").C("moviegobs")
@@ -145,7 +146,7 @@ func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -160,7 +161,7 @@ func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -175,7 +176,7 @@ func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -190,7 +191,7 @@ func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -205,7 +206,7 @@ func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -220,7 +221,7 @@ func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intMiscHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -235,7 +236,7 @@ func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -251,7 +252,7 @@ func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -266,7 +267,7 @@ func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -281,7 +282,7 @@ func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -296,7 +297,7 @@ func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -311,7 +312,7 @@ func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -326,7 +327,7 @@ func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -341,7 +342,7 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -356,7 +357,7 @@ func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -371,7 +372,7 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -386,7 +387,7 @@ func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -401,7 +402,7 @@ func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intXMenHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -416,7 +417,7 @@ func intXMenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -431,7 +432,7 @@ func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -446,7 +447,7 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func playMediaHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -483,7 +484,7 @@ func playMediaHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -515,7 +516,7 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 
 //MovSetUpHandler Movupdates the db with newly added music
 func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	val, _ := os.LookupEnv("moviegobs_MovSETUP")
 	var exitstatus int
 	if val == "0" {
@@ -532,14 +533,14 @@ func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
 
 // MovUpdateHandler needs exporting because I want it
 func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	movgo.MovUpdate()
 	json.NewEncoder(w).Encode("0")
 }
 
 //MovDBCountHandler bla bla
 func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -553,13 +554,13 @@ func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
 
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	status := os.Getenv("MEDIACENTER_SETUP")
 	json.NewEncoder(w).Encode(status)
 }
 
 func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -584,7 +585,7 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intTNGHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -608,7 +609,7 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -632,7 +633,7 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -656,7 +657,7 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -681,7 +682,7 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -705,7 +706,7 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -729,7 +730,7 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -754,7 +755,7 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intPicardHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -779,7 +780,7 @@ func intPicardHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -804,7 +805,7 @@ func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -828,7 +829,7 @@ func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -852,7 +853,7 @@ func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -877,7 +878,7 @@ func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
 
 func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting initForAllManKind")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -903,7 +904,7 @@ func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 
 func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting initAlienWorlds")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -929,7 +930,7 @@ func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 
 func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting initWandaVision")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -955,7 +956,7 @@ func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 
 func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting intFalconWinterSoldier")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -981,7 +982,7 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 
 func intInvincibleHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting intInvincible")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -1008,7 +1009,7 @@ func intInvincibleHandler(w http.ResponseWriter, r *http.Request) {
 
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting intTheBadBatch")
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -1033,7 +1034,7 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -1057,7 +1058,7 @@ func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
 		fmt.Println(err)
@@ -1081,7 +1082,7 @@ func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
-// 	setHeaders(w)
+// 	// setHeaders(w)
 // 	fp := gofeed.NewParser()
 // 	feed, _ := fp.ParseURL("https://yts.pm/rss")
 // 	// for _, f := range(feed) {
@@ -1093,7 +1094,7 @@ func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
 // }
 
 // func eztv_rssHandler(w http.ResponseWriter, r *http.Request) {
-// 	setHeaders(w)
+// 	// setHeaders(w)
 // 	fp := gofeed.NewParser()
 // 	feed, _ := fp.ParseURL("https://eztv.re/ezrss.xml")
 // 	// for _, f := range(feed) {
@@ -1107,7 +1108,7 @@ func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
 
 //TVSetUpHandler Setups the db with newly added music
 func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	val, _ := os.LookupEnv("TVGOBS_SETUP")
 	var exitstatus int
 	if val == "0" {
@@ -1133,7 +1134,7 @@ func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
 
 //TVDBCountHandler bla bla
 func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	ses := DBcon()
 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
 	if err != nil {
@@ -1145,7 +1146,7 @@ func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
 
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
-	setHeaders(w)
+	// setHeaders(w)
 	status := os.Getenv("MOVIECENTER_TVGO_SETUP")
 	json.NewEncoder(w).Encode(status)
 }
@@ -1227,5 +1228,7 @@ func main() {
 
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
-	http.ListenAndServe(":8888", (r))
+	http.ListenAndServe(":8888", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), 
+		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), 
+		handlers.AllowedOrigins([]string{"*"}))(r))
 }
