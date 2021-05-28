@@ -67,6 +67,7 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
+        fmt.Println(ActionMedia)
 	json.NewEncoder(w).Encode(ActionMedia)
 }
 
