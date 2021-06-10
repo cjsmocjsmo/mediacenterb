@@ -971,18 +971,18 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var invincibleMedia []map[string]string
+	var lokiMedia []map[string]string
 	b1 := bson.M{"catagory": "FalconWinterSoldier", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
+	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	json.NewEncoder(w).Encode(&invincibleMedia)
+	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
-func intInvincibleHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intInvincible")
+func intLokiHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting intLoki")
 	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
@@ -997,14 +997,14 @@ func intInvincibleHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var invincibleMedia []map[string]string
-	b1 := bson.M{"catagory": "Invincible", "season": s1}
+	var lokiMedia []map[string]string
+	b1 := bson.M{"catagory": "loki", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&invincibleMedia)
+	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	json.NewEncoder(w).Encode(&invincibleMedia)
+	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
 
@@ -1215,7 +1215,7 @@ func main() {
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
 
-	r.HandleFunc("/intInvincible", intInvincibleHandler)
+	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 
 	r.HandleFunc("/playMedia", playMediaHandler)
