@@ -1004,6 +1004,7 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 	if errG != nil {
 		fmt.Println(errG)
 	}
+	fmt.Println(lokiMedia)
 	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
