@@ -998,7 +998,7 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
 	var lokiMedia []map[string]string
-	b1 := bson.M{"catagory": "loki", "season": s1}
+	b1 := bson.M{"catagory": "Loki", "season": s1}
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
 	if errG != nil {
