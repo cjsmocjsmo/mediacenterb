@@ -1035,6 +1035,32 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&thebadbatchMedia)
 }
 
+func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting intMastersOfTheUniverse")
+	// setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var mastersOfTheUniverseMedia []map[string]string
+	b1 := bson.M{"catagory": "MastersOfTheUniverse", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&mastersOfTheUniverseMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&mastersOfTheUniverseMedia)
+}
+
 func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
 	// setHeaders(w)
 	u, err := url.Parse(r.URL.String())
@@ -1215,6 +1241,7 @@ func main() {
 	r.HandleFunc("/intTNG", intTNGHandler)
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
+	r.HandleFunc("/intMastersOfTheUniverse", intMastersOfTheUniverseHandler)
 
 	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
