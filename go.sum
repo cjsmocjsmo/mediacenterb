@@ -43,6 +43,8 @@ github.com/cjsmocjsmo/movgo v0.2.9 h1:yZf89Pgopf/Jg4gX3F6jxZ5keGSIYrUh1Zl6FhMmOB
 github.com/cjsmocjsmo/movgo v0.2.9/go.mod h1:zhn+26s/tNVQfThCT36kqW+nm346K4Lx2+fRi7W0OHU=
 github.com/cjsmocjsmo/movgo v0.3.1 h1:ROTJw++rD2d7LvRSfdl0+MIDSgd+g44vGPIBSrqLrWM=
 github.com/cjsmocjsmo/movgo v0.3.1/go.mod h1:zhn+26s/tNVQfThCT36kqW+nm346K4Lx2+fRi7W0OHU=
+github.com/cjsmocjsmo/movgo v0.3.2 h1:bQ4SFLVD82cCiXUvYqbX4NJSPd0hZo01G7ZJLnsa4jc=
+github.com/cjsmocjsmo/movgo v0.3.2/go.mod h1:zhn+26s/tNVQfThCT36kqW+nm346K4Lx2+fRi7W0OHU=
 github.com/cjsmocjsmo/tvgo v0.2.9 h1:UhE0Nltzvtj09GwCYWVI3N2S9uIn7j1jsW0PXHHh4Lc=
 github.com/cjsmocjsmo/tvgo v0.2.9/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.3.1 h1:xO8LjYqNAZ6Hxkq/yfNfJJCog4Ah4us0NufkGl1pgKU=
@@ -95,6 +97,8 @@ github.com/cjsmocjsmo/tvgo v0.6.1 h1:rhCtBtKw30wC+sZ7py2Mkn+Bns3bGEtOIdxQLCjFeN4
 github.com/cjsmocjsmo/tvgo v0.6.1/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v0.6.2 h1:/aGYRPr4/nKgHC/I4zlbjWODbCaE7YbBl0uO0Ul2B0w=
 github.com/cjsmocjsmo/tvgo v0.6.2/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v0.6.3 h1:SjtM2LfpUp7S6p7VEk0kj8BA/5Lr5s5IFTQW3ExJISw=
+github.com/cjsmocjsmo/tvgo v0.6.3/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
