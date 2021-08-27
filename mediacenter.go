@@ -1009,6 +1009,55 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 
+
+func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Starting intWhatIf")
+	// setHeaders(w)
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		fmt.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		fmt.Println(eff)
+	}
+	s1 := m["season"][0]
+	fmt.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var WhatIfMedia []map[string]string
+	b1 := bson.M{"catagory": "WhatIf", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&WhatIfMedia)
+	if errG != nil {
+		fmt.Println(errG)
+	}
+	fmt.Println(WhatIfMedia)
+	json.NewEncoder(w).Encode(&WhatIfMedia)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Starting intTheBadBatch")
 	// setHeaders(w)
