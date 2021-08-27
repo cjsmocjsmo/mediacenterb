@@ -1026,15 +1026,15 @@ func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var WhatIfMedia []map[string]string
+	var whatifMedia []map[string]string
 	b1 := bson.M{"catagory": "WhatIf", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&WhatIfMedia)
+	errG := MTyc.Find(b1).Select(b2).All(&whatifMedia)
 	if errG != nil {
 		fmt.Println(errG)
 	}
-	fmt.Println(WhatIfMedia)
-	json.NewEncoder(w).Encode(&WhatIfMedia)
+	fmt.Println(whatifMedia)
+	json.NewEncoder(w).Encode(&whatifMedia)
 }
 
 
