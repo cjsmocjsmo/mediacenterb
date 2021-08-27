@@ -1294,6 +1294,7 @@ func main() {
 
 	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
+	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
 
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
