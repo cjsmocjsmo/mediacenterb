@@ -1110,53 +1110,53 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&mastersOfTheUniverseMedia)
 }
 
-func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	u, err := url.Parse(r.URL.String())
-	if err != nil {
-		fmt.Println(err)
-	}
-	m, eff := url.ParseQuery(u.RawQuery)
-	if eff != nil {
-		fmt.Println(eff)
-	}
-	s1 := m["season"][0]
-	ses := DBcon()
-	defer ses.Close()
-	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var SpaceTimeMedia []map[string]string
-	b1 := bson.M{"catagory": "SpaceTime", "season": s1}
-	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&SpaceTimeMedia)
-	if errG != nil {
-		fmt.Println(errG)
-	}
-	json.NewEncoder(w).Encode(&SpaceTimeMedia)
-}
+// func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
+// 	// setHeaders(w)
+// 	u, err := url.Parse(r.URL.String())
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	m, eff := url.ParseQuery(u.RawQuery)
+// 	if eff != nil {
+// 		fmt.Println(eff)
+// 	}
+// 	s1 := m["season"][0]
+// 	ses := DBcon()
+// 	defer ses.Close()
+// 	MTyc := ses.DB("tvgobs").C("tvgobs")
+// 	var SpaceTimeMedia []map[string]string
+// 	b1 := bson.M{"catagory": "SpaceTime", "season": s1}
+// 	b2 := bson.M{"_id": 0}
+// 	errG := MTyc.Find(b1).Select(b2).All(&SpaceTimeMedia)
+// 	if errG != nil {
+// 		fmt.Println(errG)
+// 	}
+// 	json.NewEncoder(w).Encode(&SpaceTimeMedia)
+// }
 
-func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	u, err := url.Parse(r.URL.String())
-	if err != nil {
-		fmt.Println(err)
-	}
-	m, eff := url.ParseQuery(u.RawQuery)
-	if eff != nil {
-		fmt.Println(eff)
-	}
-	s1 := m["season"][0]
-	ses := DBcon()
-	defer ses.Close()
-	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var SeanCarrolMedia []map[string]string
-	b1 := bson.M{"catagory": "SeanCarrol", "season": s1}
-	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&SeanCarrolMedia)
-	if errG != nil {
-		fmt.Println(errG)
-	}
-	json.NewEncoder(w).Encode(&SeanCarrolMedia)
-}
+// func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
+// 	// setHeaders(w)
+// 	u, err := url.Parse(r.URL.String())
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	m, eff := url.ParseQuery(u.RawQuery)
+// 	if eff != nil {
+// 		fmt.Println(eff)
+// 	}
+// 	s1 := m["season"][0]
+// 	ses := DBcon()
+// 	defer ses.Close()
+// 	MTyc := ses.DB("tvgobs").C("tvgobs")
+// 	var SeanCarrolMedia []map[string]string
+// 	b1 := bson.M{"catagory": "SeanCarrol", "season": s1}
+// 	b2 := bson.M{"_id": 0}
+// 	errG := MTyc.Find(b1).Select(b2).All(&SeanCarrolMedia)
+// 	if errG != nil {
+// 		fmt.Println(errG)
+// 	}
+// 	json.NewEncoder(w).Encode(&SeanCarrolMedia)
+// }
 
 // func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
 // 	// setHeaders(w)
@@ -1199,6 +1199,14 @@ func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(exitstatus)
 }
+
+// MovUpdateHandler needs exporting because I want it
+func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
+	// setHeaders(w)
+	tvgo.TVUpdate()
+	json.NewEncoder(w).Encode("0")
+}
+
 
 //DropTVDataBaseHandler is crap
 func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
@@ -1284,27 +1292,26 @@ func main() {
 	r.HandleFunc("/intOrville", intOrvilleHandler)
 	r.HandleFunc("/intPicard", intPicardHandler)
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
-	r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
-	r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
+	// r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
+	// r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
 	r.HandleFunc("/intSTTV", intSTTVHandler)
 	r.HandleFunc("/intTNG", intTNGHandler)
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
 	r.HandleFunc("/intWandaVision", intWandaVisionHandler)
 	r.HandleFunc("/intMastersOfTheUniverse", intMastersOfTheUniverseHandler)
-
 	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
 
+	r.HandleFunc("/TVSetUp", TVSetUpHandler)
+	r.HandleFunc("/TVUpdate", TVUpdateHandler)
+	r.HandleFunc("/TVDBCount", TVDBCountHandler)
+	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
+
 	r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
-	r.HandleFunc("/TVSetUp", TVSetUpHandler)
-	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
-	r.HandleFunc("/TVDBCount", TVDBCountHandler)
-	r.HandleFunc("/TVSetupStatus", TVSetupStatusHandler)
-	// r.HandleFunc("/yts_rss", yts_rssHandler)
-	// r.HandleFunc("/eztv_rss", eztv_rssHandler)
-
+	
+	
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
 	http.ListenAndServe(":8888", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), 
