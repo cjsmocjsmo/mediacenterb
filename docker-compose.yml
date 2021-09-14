@@ -29,6 +29,7 @@ services:
       - MEDIACENTER_OMXPLAYER_ADDRESS_REACT=http://192.168.0.93:8181/OmxplayerPlayMediaReact
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
+      - MEDIACENTER_LOG_PATH=./logs/moviegobs.log
     networks:
       - mediacenterb
     ports:

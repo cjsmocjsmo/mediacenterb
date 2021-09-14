@@ -33,7 +33,6 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	// "github.com/mmcdole/gofeed"
 )
 
 // DBcon is exported because I want it
@@ -47,16 +46,8 @@ func DBcon() *mgo.Session {
 	return s
 }
 
-// func setHeaders(w http.ResponseWriter) http.ResponseWriter {
-// 	w.Header().Set("Access-Control-Allow-Headers", "*")
-// 	w.Header().Set("Access-Control-Allow-Origin", "*")
-// 	w.Header().Set("Content-Type", "application/json")
-// 	w.Header().Set("Cache-Control", "max-age=370739520, public")
-// 	return w
-// }
-
 func intActionHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("intActionHandler start")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -65,14 +56,17 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&ActionMedia)
 	if err != nil {
+		log.Println("ActionHandler db call error")
 		log.Println(err)
 	}
-        fmt.Println(ActionMedia)
+        log.Println(ActionMedia)
 	json.NewEncoder(w).Encode(ActionMedia)
+	count := len(ActionMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("intCartoonsHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -81,13 +75,16 @@ func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 	var CartoonMedia []map[string]string
 	err := MTc.Find(b1).Select(b2).All(&CartoonMedia)
 	if err != nil {
+		log.Println("cartoonHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(CartoonMedia)
+	count := len(CartoonMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intComedyHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("intComedyHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -96,13 +93,16 @@ func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&ComedyMedia)
 	if err != nil {
+		log.Println("comedyHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(ComedyMedia)
+	count := len(ComedyMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intDramaHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("intDramaHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -111,13 +111,16 @@ func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&DramaMedia)
 	if err != nil {
+		log.Println("dramaHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(DramaMedia)
+	count := len(DramaMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("initGodzillaHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -126,13 +129,16 @@ func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&GodzillaMedia)
 	if err != nil {
+		log.Println("godzillaHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(GodzillaMedia)
+	count := len(GodzillaMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("intIndianaJonesHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTrc := ses.DB("moviegobs").C("moviegobs")
@@ -141,13 +147,16 @@ func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTrc.Find(b1).Select(b2).All(&IndianaJonesMedia)
 	if err != nil {
+		log.Println("indianaJonesHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(IndianaJonesMedia)
+	count := len(IndianaJonesMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("johnWayneHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -156,13 +165,16 @@ func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&JohnWayneMedia)
 	if err != nil {
+		log.Println("johnwayneHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(JohnWayneMedia)
+	count := len(JohnWayneMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("JurassicParkHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -171,13 +183,16 @@ func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&JurassicParkMedia)
 	if err != nil {
+		log.Println("JurassicParkHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(JurassicParkMedia)
+	count := len(JurassicParkMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("KingsManHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -186,13 +201,16 @@ func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&KingsmanMedia)
 	if err != nil {
+		log.Println("Kingsman db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(KingsmanMedia)
+	count := len(KingsmanMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("HarryPotterHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -204,10 +222,12 @@ func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(HarryPotterMedia)
+	count := len(HarryPotterMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("MenInBlackHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -219,10 +239,12 @@ func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(MenInBlackMedia)
+	count := len(MenInBlackMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intMiscHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("MiscHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -234,10 +256,12 @@ func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(MiscMedia)
+	count := len(MiscMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("SciFiHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -246,14 +270,16 @@ func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&SciFiMedia)
 	if err != nil {
-		log.Println("this is a database lookup error for the InitSciFiHandler function")
+		log.Println("InitSciFiHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(SciFiMedia)
+	count := len(SciFiMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("StarTrekHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -262,13 +288,16 @@ func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&StarTrekMedia)
 	if err != nil {
+		log.Println("StarTrekHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(StarTrekMedia)
+	count := len(StarTrekMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("StarWarsHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -277,13 +306,16 @@ func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&StarWarsMedia)
 	if err != nil {
+		log.Printf("StarWarsHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(StarWarsMedia)
+	count := len(StarWarsMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("SuperHerosHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -292,13 +324,16 @@ func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&SuperHerosMedia)
 	if err != nil {
+		log.Printf("SuperHerosHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(SuperHerosMedia)
+	count := len(SuperHerosMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TremorsHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -307,13 +342,16 @@ func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&TremorsMedia)
 	if err != nil {
+		log.Printf("TremorsHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(TremorsMedia)
+	count := len(TremorsMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("JohnWickHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -322,13 +360,16 @@ func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&JohnWickMedia)
 	if err != nil {
+		log.Printf("JohnWickHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(JohnWickMedia)
+	count := len(JohnWickMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("PiratesHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -337,13 +378,16 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&PiratesMedia)
 	if err != nil {
+		log.Printf("PiratesHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(PiratesMedia)
+	count := len(PiratesMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("BruceWillisHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -352,13 +396,16 @@ func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&DieHardMedia)
 	if err != nil {
+		log.Printf("BruceWillisHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(DieHardMedia)
+	count := len(DieHardMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("FantasyHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -367,13 +414,16 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&FantasyMedia)
 	if err != nil {
+		log.Printf("FantasyHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(FantasyMedia)
+	count := len(FantasyMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("RiddickHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -382,13 +432,16 @@ func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&RiddickMedia)
 	if err != nil {
+		log.Printf("RiddickHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(RiddickMedia)
+	count := len(RiddickMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TomCruizeHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -397,13 +450,16 @@ func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&TCMedia)
 	if err != nil {
+		log.Printf("TomCruizeHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(TCMedia)
+	count := len(TCMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intXMenHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("XMenHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -412,13 +468,16 @@ func intXMenHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&XMenMedia)
 	if err != nil {
+		log.Printf("XMenHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(XMenMedia)
+	count := len(XMenMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("DocumentaryHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -427,13 +486,16 @@ func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&DocumentaryMedia)
 	if err != nil {
+		log.Println("DocumentaryHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(DocumentaryMedia)
+	count := len(DocumentaryMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TheRockHandler started")
 	ses := DBcon()
 	defer ses.Close()
 	MTc := ses.DB("moviegobs").C("moviegobs")
@@ -442,53 +504,60 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	err := MTc.Find(b1).Select(b2).All(&TheRockMedia)
 	if err != nil {
+		log.Println("TheRockHandler db call error")
 		log.Println(err)
 	}
 	json.NewEncoder(w).Encode(TheRockMedia)
+	count := len(TheRockMedia)
+	log.Printf("Sent %s files", count)
 }
 
-func playMediaHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	u, err := url.Parse(r.URL.String())
-	if err != nil {
-		fmt.Println(err)
-	}
-	m, _ := url.ParseQuery(u.RawQuery)
-	mf := m["movie"][0]
-	ses := DBcon()
-	defer ses.Close()
-	var MediaInfo map[string]string
-	MTc := ses.DB("moviegobs").C("moviegobs")
-	b1 := bson.M{"movfspath": mf}
-	b2 := bson.M{"_id": 0}
-	err = MTc.Find(b1).Select(b2).One(&MediaInfo)
-	if err != nil {
-		fmt.Println(err)
-	}
-	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS")
-	u, _ = url.Parse(omxAddr)
-	q, _ := url.ParseQuery(u.RawQuery)
-	q.Add("medPath", omxAddr)
-	u.RawQuery = q.Encode()
-	resp, err := http.Get(u.String())
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-	Abody := string(body)
-	fmt.Printf("this is mediainfo sent to browser: %s", Abody)
-	json.NewEncoder(w).Encode(&MediaInfo)
-}
+// func playMediaHandler(w http.ResponseWriter, r *http.Request) {
+// 	log.Println("playMediaHandler started")
+// 	u, err := url.Parse(r.URL.String())
+// 	if err != nil {
+// 		log.Println("playMediaHandler url parse error")
+// 		log.Println(err)
+// 	}
+// 	m, _ := url.ParseQuery(u.RawQuery)
+// 	mf := m["movie"][0]
+// 	ses := DBcon()
+// 	defer ses.Close()
+// 	var MediaInfo map[string]string
+// 	MTc := ses.DB("moviegobs").C("moviegobs")
+// 	b1 := bson.M{"movfspath": mf}
+// 	b2 := bson.M{"_id": 0}
+// 	err = MTc.Find(b1).Select(b2).One(&MediaInfo)
+// 	if err != nil {
+// 		log.Println("playMediaHandler db call error")
+// 		log.Println(err)
+// 	}
+
+
+// 	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS")
+// 	u, _ = url.Parse(omxAddr)
+// 	q, _ := url.ParseQuery(u.RawQuery)
+// 	q.Add("medPath", omxAddr)
+// 	u.RawQuery = q.Encode()
+// 	resp, err := http.Get(u.String())
+// 	if err != nil {
+// 		log.Println(err)
+// 	}
+// 	defer resp.Body.Close()
+// 	body, err := ioutil.ReadAll(resp.Body)
+// 	if err != nil {
+// 		log.Println(err)
+// 	}
+// 	Abody := string(body)
+// 	fmt.Printf("this is mediainfo sent to browser: %s", Abody)
+// 	json.NewEncoder(w).Encode(&MediaInfo)
+// }
 
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	m, _ := url.ParseQuery(u.RawQuery)
 	mf := m["movie"]
@@ -503,72 +572,76 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := http.Get(u.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	Abody := string(body)
-	fmt.Println(Abody)
+	log.Println(Abody)
 	json.NewEncoder(w).Encode(mf)
 }
 
 //MovSetUpHandler Movupdates the db with newly added music
-func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	val, _ := os.LookupEnv("moviegobs_MovSETUP")
-	var exitstatus int
-	if val == "0" {
-		fmt.Println("Ok is Ok")
-		log.Println("moviegobs_MovSETUP environment variable is set, starting MOVIEGO")
-		exitstatus = 0
-	} else {
-		fmt.Println("not OK")
-		log.Println("moviegobs_MovSETUP environment variable is not set, starting MovSETUP")
-		exitstatus = movgo.MovSetUp()
-	}
-	json.NewEncoder(w).Encode(exitstatus)
-}
+// func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
+// 	log.Println(" started")
+// 	val, _ := os.LookupEnv("moviegobs_MovSETUP")
+// 	var exitstatus int
+// 	if val == "0" {
+// 		log.Println("Ok is Ok")
+// 		log.Println("moviegobs_MovSETUP environment variable is set, starting MOVIEGO")
+// 		exitstatus = 0
+// 	} else {
+// 		log.Println("not OK")
+// 		log.Println("moviegobs_MovSETUP environment variable is not set, starting MovSETUP")
+// 		exitstatus = movgo.MovSetUp()
+// 	}
+// 	json.NewEncoder(w).Encode(exitstatus)
+// }
 
 // MovUpdateHandler needs exporting because I want it
 func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("MovUpdateHandler started")
 	movgo.MovUpdate()
 	json.NewEncoder(w).Encode("0")
+	log.Println("MovUpdateHandler complete")
 }
 
-//MovDBCountHandler bla bla
-func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	ses := DBcon()
-	defer ses.Close()
-	MTc := ses.DB("moviegobs").C("moviegobs")
-	foo, err := MTc.Count()
-	if err != nil {
-		json.NewEncoder(w).Encode(0)
-		log.Println(err)
-	}
-	json.NewEncoder(w).Encode(foo)
-}
+// //MovDBCountHandler bla bla
+// func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
+// 	log.Println(" started")
+// 	ses := DBcon()
+// 	defer ses.Close()
+// 	MTc := ses.DB("moviegobs").C("moviegobs")
+// 	foo, err := MTc.Count()
+// 	if err != nil {
+// 		json.NewEncoder(w).Encode(0)
+// 		log.Println(err)
+// 	}
+// 	json.NewEncoder(w).Encode(foo)
+// }
 
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("MovSetupVariableHandler started")
 	status := os.Getenv("MEDIACENTER_SETUP")
 	json.NewEncoder(w).Encode(status)
+	log.Println("MovSetupVariableHandler completed")
 }
 
 func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("STTVHandler started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println("STTVHandler url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -580,20 +653,24 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("this is b1 %s", b1)
 	errG := MTyc.Find(b1).Select(b2).All(&STTVMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println("STTVHandler db call error")
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&STTVMedia)
+	log.Println("STTVHandler complete")
 }
 
 func intTNGHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TNGHandler started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println("TNGHandler url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -604,20 +681,24 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&nextGenerationMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println("TNGHandler db call error")
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&nextGenerationMedia)
+	log.Println("TNGHandler complete")
 }
 
 func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -628,20 +709,22 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&enterpriseMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&enterpriseMedia)
 }
 
 func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -652,20 +735,22 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&discoveryMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&discoveryMedia)
 }
 
 func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -676,21 +761,23 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&voyagerMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&voyagerMedia)
 
 }
 
 func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -701,20 +788,22 @@ func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lastshipMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&lastshipMedia)
 }
 
 func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -725,20 +814,22 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTtc.Find(b1).Select(b2).All(&OrvilleMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&OrvilleMedia)
 }
 
 func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -749,21 +840,23 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTtc.Find(b1).Select(b2).All(&LostInSpaceMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
-	fmt.Println(&LostInSpaceMedia)
+	log.Println(&LostInSpaceMedia)
 	json.NewEncoder(w).Encode(&LostInSpaceMedia)
 }
 
 func intPicardHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -774,21 +867,23 @@ func intPicardHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTtc.Find(b1).Select(b2).All(&PicardMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
-	fmt.Println(&PicardMedia)
+	log.Println(&PicardMedia)
 	json.NewEncoder(w).Encode(&PicardMedia)
 }
 
 func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -799,21 +894,23 @@ func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTtc.Find(b1).Select(b2).All(&MandalorianMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
-	fmt.Println(&MandalorianMedia)
+	log.Println(&MandalorianMedia)
 	json.NewEncoder(w).Encode(&MandalorianMedia)
 }
 
 func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -824,20 +921,22 @@ func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&alteredcarbonMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&alteredcarbonMedia)
 }
 
 func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -848,20 +947,22 @@ func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lowerdecksMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&lowerdecksMedia)
 }
 
 func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
 	ses := DBcon()
@@ -872,24 +973,26 @@ func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&raisedbywolvesMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&raisedbywolvesMedia)
 }
 
 func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting initForAllManKind")
-	// setHeaders(w)
+	log.Println("Starting initForAllManKind")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -898,24 +1001,26 @@ func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&forallmankindMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&forallmankindMedia)
 }
 
 func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting initAlienWorlds")
-	// setHeaders(w)
+	log.Println("Starting initAlienWorlds")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -924,24 +1029,26 @@ func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&alienworldsMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&alienworldsMedia)
 }
 
 func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting initWandaVision")
-	// setHeaders(w)
+	log.Println("Starting initWandaVision")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -950,24 +1057,26 @@ func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&wandavisionMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&wandavisionMedia)
 }
 
 func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intFalconWinterSoldier")
-	// setHeaders(w)
+	log.Println("Starting intFalconWinterSoldier")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -976,24 +1085,26 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
 func intLokiHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intLoki")
-	// setHeaders(w)
+	log.Println("Starting intLoki")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1002,27 +1113,29 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
-	fmt.Println(lokiMedia)
+	log.Println(lokiMedia)
 	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
 
 
 func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intWhatIf")
-	// setHeaders(w)
+	log.Println("Starting intWhatIf")
+	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println(" url parse error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
+	log.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1031,46 +1144,25 @@ func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&whatifMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
-	fmt.Println(whatifMedia)
+	log.Println(whatifMedia)
 	json.NewEncoder(w).Encode(&whatifMedia)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intTheBadBatch")
-	// setHeaders(w)
+	log.Println("TheBadBatch started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println("parse url string error")
+		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("usrl parsequery error")
+		log.Println(eff)
 	}
 	s1 := m["season"][0]
-	fmt.Println(s1)
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1079,24 +1171,26 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&thebadbatchMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&thebadbatchMedia)
+	count := len(thebadbatchMedia)
+	log.Printf("Sent %s files", count)
 }
 
 func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Starting intMastersOfTheUniverse")
-	// setHeaders(w)
+	log.Println("MastersOfTheUniverse started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		fmt.Println(err)
+		log.Println("url parse error")
+		log.Println(err)
 	}
-	m, eff := url.ParseQuery(u.RawQuery)
+	_, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		fmt.Println(eff)
+		log.Println("MastersOfTheUniverse url parse querry error")
+		log.Println(eff)
 	}
-	s1 := m["season"][0]
-	fmt.Println(s1)
+	// s1 := m["season"][0]
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1105,138 +1199,42 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).All(&mastersOfTheUniverseMedia)
 	if errG != nil {
-		fmt.Println(errG)
+		log.Println("mastersOfTheUniverse db call error")
+		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&mastersOfTheUniverseMedia)
-}
-
-// func intSpaceTimeHandler(w http.ResponseWriter, r *http.Request) {
-// 	// setHeaders(w)
-// 	u, err := url.Parse(r.URL.String())
-// 	if err != nil {
-// 		fmt.Println(err)
-// 	}
-// 	m, eff := url.ParseQuery(u.RawQuery)
-// 	if eff != nil {
-// 		fmt.Println(eff)
-// 	}
-// 	s1 := m["season"][0]
-// 	ses := DBcon()
-// 	defer ses.Close()
-// 	MTyc := ses.DB("tvgobs").C("tvgobs")
-// 	var SpaceTimeMedia []map[string]string
-// 	b1 := bson.M{"catagory": "SpaceTime", "season": s1}
-// 	b2 := bson.M{"_id": 0}
-// 	errG := MTyc.Find(b1).Select(b2).All(&SpaceTimeMedia)
-// 	if errG != nil {
-// 		fmt.Println(errG)
-// 	}
-// 	json.NewEncoder(w).Encode(&SpaceTimeMedia)
-// }
-
-// func intSeanCarrolHandler(w http.ResponseWriter, r *http.Request) {
-// 	// setHeaders(w)
-// 	u, err := url.Parse(r.URL.String())
-// 	if err != nil {
-// 		fmt.Println(err)
-// 	}
-// 	m, eff := url.ParseQuery(u.RawQuery)
-// 	if eff != nil {
-// 		fmt.Println(eff)
-// 	}
-// 	s1 := m["season"][0]
-// 	ses := DBcon()
-// 	defer ses.Close()
-// 	MTyc := ses.DB("tvgobs").C("tvgobs")
-// 	var SeanCarrolMedia []map[string]string
-// 	b1 := bson.M{"catagory": "SeanCarrol", "season": s1}
-// 	b2 := bson.M{"_id": 0}
-// 	errG := MTyc.Find(b1).Select(b2).All(&SeanCarrolMedia)
-// 	if errG != nil {
-// 		fmt.Println(errG)
-// 	}
-// 	json.NewEncoder(w).Encode(&SeanCarrolMedia)
-// }
-
-// func yts_rssHandler(w http.ResponseWriter, r *http.Request) {
-// 	// setHeaders(w)
-// 	fp := gofeed.NewParser()
-// 	feed, _ := fp.ParseURL("https://yts.pm/rss")
-// 	// for _, f := range(feed) {
-// 	// 	fmt.Println(f.Title)
-// 	// }
-// 	// json.NewEncoder(w).Encode(&feed)
-// 	fmt.Println(feed.Title)
-// 	fmt.Println(feed)
-// }
-
-// func eztv_rssHandler(w http.ResponseWriter, r *http.Request) {
-// 	// setHeaders(w)
-// 	fp := gofeed.NewParser()
-// 	feed, _ := fp.ParseURL("https://eztv.re/ezrss.xml")
-// 	// for _, f := range(feed) {
-// 	// 	fmt.Println(f.Title)
-// 	// }
-// 	// json.NewEncoder(w).Encode(&feed)
-// 	fmt.Println(feed.Title)
-// }
-
-
-
-//TVSetUpHandler Setups the db with newly added music
-func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	val, _ := os.LookupEnv("TVGOBS_SETUP")
-	var exitstatus int
-	if val == "0" {
-		fmt.Println("Ok is Ok")
-		fmt.Println("TVGOBS_SETUP environment variable is set, starting TVGO")
-		exitstatus = 0
-	} else {
-		fmt.Println("not OK")
-		fmt.Println("TVGOBS_SETUP environment variable is not set, starting SETUP")
-		exitstatus = tvgo.TVSetUp()
-	}
-	json.NewEncoder(w).Encode(exitstatus)
+	count := len(mastersOfTheUniverseMedia)
+	log.Printf("Sent %s files", count)
 }
 
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TVUpdateHandler started")
 	tvgo.TVUpdate()
 	json.NewEncoder(w).Encode("0")
 }
 
-
-//DropTVDataBaseHandler is crap
-func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
-	sess := DBcon()
-	err := sess.DB("tvgobs").DropDatabase()
-	if err != nil {
-		fmt.Println(err)
-	}
-}
-
-//TVDBCountHandler bla bla
-func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
-	ses := DBcon()
-	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
-	if err != nil {
-		json.NewEncoder(w).Encode(-0)
-		log.Println(err)
-	}
-	json.NewEncoder(w).Encode(foo)
-}
-
 //TVSetupStatusHandler is exported becasued I want it
 func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
-	// setHeaders(w)
+	log.Println("TVSetupStatusHandler started")
 	status := os.Getenv("MOVIECENTER_TVGO_SETUP")
 	json.NewEncoder(w).Encode(status)
+	log.Printf("TVSetupStatusHandler is %s", TVSetupStatusHandler)
+}
+
+func setupLogging() {
+	logfile := os.Getenv("MEDIACENTER_LOG_PATH")
+	// If the file doesn't exist, create it or append to the file
+	file, err := os.OpenFile(logfile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+	log.Println("Logging started \n")
 }
 
 func init() {
+	setupLogging()
 	movgo.MovSetUp()
 	tvgo.TVSetUp()
 
@@ -1271,10 +1269,8 @@ func main() {
 	r.HandleFunc("/intXMen", intXMenHandler)
 	r.HandleFunc("/intDocumentary", intDocumentaryHandler)
 	r.HandleFunc("/intTheRock", intTheRockHandler)
-	r.HandleFunc("/playMedia", playMediaHandler)
-	r.HandleFunc("/playMediaReact", playMediaReactHandler)
-	r.HandleFunc("/MovDBCount", MovDBCountHandler)
-	r.HandleFunc("/MovSetUp", MovSetUpHandler)
+	// r.HandleFunc("/MovDBCount", MovDBCountHandler)
+	// r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
 	
@@ -1303,14 +1299,16 @@ func main() {
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
 
-	r.HandleFunc("/TVSetUp", TVSetUpHandler)
-	r.HandleFunc("/TVUpdate", TVUpdateHandler)
-	r.HandleFunc("/TVDBCount", TVDBCountHandler)
-	r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
-
-	r.HandleFunc("/playMedia", playMediaHandler)
-	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	
+	r.HandleFunc("/TVUpdate", TVUpdateHandler)
+
+
+	// r.HandleFunc("/TVSetUp", TVSetUpHandler)
+	// r.HandleFunc("/TVDBCount", TVDBCountHandler)
+	// r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
+
+	// r.HandleFunc("/playMedia", playMediaHandler)
+	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 	
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
@@ -1318,3 +1316,41 @@ func main() {
 		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), 
 		handlers.AllowedOrigins([]string{"*"}))(r))
 }
+
+
+// //TVSetUpHandler Setups the db with newly added music
+// func TVSetUpHandler(w http.ResponseWriter, r *http.Request) {
+// 	log.Println(" started")
+// 	val, _ := os.LookupEnv("TVGOBS_SETUP")
+// 	var exitstatus int
+// 	if val == "0" {
+// 		log.Println("Ok is Ok")
+// 		log.Println("TVGOBS_SETUP environment variable is set, starting TVGO")
+// 		exitstatus = 0
+// 	} else {
+// 		log.Println("not OK")
+// 		log.Println("TVGOBS_SETUP environment variable is not set, starting SETUP")
+// 		exitstatus = tvgo.TVSetUp()
+// 	}
+// 	json.NewEncoder(w).Encode(exitstatus)
+// }
+// //DropTVDataBaseHandler is crap
+// func DropTVDataBaseHandler(w http.ResponseWriter, r *http.Request) {
+// 	sess := DBcon()
+// 	err := sess.DB("tvgobs").DropDatabase()
+// 	if err != nil {
+// 		log.Println(err)
+// 	}
+// }
+
+// //TVDBCountHandler bla bla
+// func TVDBCountHandler(w http.ResponseWriter, r *http.Request) {
+// 	log.Println("TVDBCountHandler started")
+// 	ses := DBcon()
+// 	foo, err := ses.DB("tvgobs").C("tvgobs").Count()
+// 	if err != nil {
+// 		json.NewEncoder(w).Encode(-0)
+// 		log.Println(err)
+// 	}
+// 	json.NewEncoder(w).Encode(foo)
+// }

@@ -23,8 +23,8 @@ RUN \
   chmod -R +rwx ./fsData && \
   mkdir ./logs && \
   chmod -R +rwx ./logs && \
-  echo "Creating log file" > ./logs/moviegobs_log.txt && \
-  chmod -R +rwx ./logs/moviegobs_log.txt
+  echo "Creating log file" > ./logs/moviegobs.log && \
+  chmod -R +rwx ./logs/moviegobs.log
   
 CMD ["./main"]
 STOPSIGNAL SIGINT
