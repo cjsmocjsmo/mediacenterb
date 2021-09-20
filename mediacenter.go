@@ -512,47 +512,6 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %s files", count)
 }
 
-// func playMediaHandler(w http.ResponseWriter, r *http.Request) {
-// 	log.Println("playMediaHandler started")
-// 	u, err := url.Parse(r.URL.String())
-// 	if err != nil {
-// 		log.Println("playMediaHandler url parse error")
-// 		log.Println(err)
-// 	}
-// 	m, _ := url.ParseQuery(u.RawQuery)
-// 	mf := m["movie"][0]
-// 	ses := DBcon()
-// 	defer ses.Close()
-// 	var MediaInfo map[string]string
-// 	MTc := ses.DB("moviegobs").C("moviegobs")
-// 	b1 := bson.M{"movfspath": mf}
-// 	b2 := bson.M{"_id": 0}
-// 	err = MTc.Find(b1).Select(b2).One(&MediaInfo)
-// 	if err != nil {
-// 		log.Println("playMediaHandler db call error")
-// 		log.Println(err)
-// 	}
-
-
-// 	omxAddr := os.Getenv("moviegobs_OMXPLAYER_ADDRESS")
-// 	u, _ = url.Parse(omxAddr)
-// 	q, _ := url.ParseQuery(u.RawQuery)
-// 	q.Add("medPath", omxAddr)
-// 	u.RawQuery = q.Encode()
-// 	resp, err := http.Get(u.String())
-// 	if err != nil {
-// 		log.Println(err)
-// 	}
-// 	defer resp.Body.Close()
-// 	body, err := ioutil.ReadAll(resp.Body)
-// 	if err != nil {
-// 		log.Println(err)
-// 	}
-// 	Abody := string(body)
-// 	fmt.Printf("this is mediainfo sent to browser: %s", Abody)
-// 	json.NewEncoder(w).Encode(&MediaInfo)
-// }
-
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
@@ -584,23 +543,6 @@ func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(mf)
 }
 
-//MovSetUpHandler Movupdates the db with newly added music
-// func MovSetUpHandler(w http.ResponseWriter, r *http.Request) {
-// 	log.Println(" started")
-// 	val, _ := os.LookupEnv("moviegobs_MovSETUP")
-// 	var exitstatus int
-// 	if val == "0" {
-// 		log.Println("Ok is Ok")
-// 		log.Println("moviegobs_MovSETUP environment variable is set, starting MOVIEGO")
-// 		exitstatus = 0
-// 	} else {
-// 		log.Println("not OK")
-// 		log.Println("moviegobs_MovSETUP environment variable is not set, starting MovSETUP")
-// 		exitstatus = movgo.MovSetUp()
-// 	}
-// 	json.NewEncoder(w).Encode(exitstatus)
-// }
-
 // MovUpdateHandler needs exporting because I want it
 func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("MovUpdateHandler started")
@@ -608,20 +550,6 @@ func MovUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("0")
 	log.Println("MovUpdateHandler complete")
 }
-
-// //MovDBCountHandler bla bla
-// func MovDBCountHandler(w http.ResponseWriter, r *http.Request) {
-// 	log.Println(" started")
-// 	ses := DBcon()
-// 	defer ses.Close()
-// 	MTc := ses.DB("moviegobs").C("moviegobs")
-// 	foo, err := MTc.Count()
-// 	if err != nil {
-// 		json.NewEncoder(w).Encode(0)
-// 		log.Println(err)
-// 	}
-// 	json.NewEncoder(w).Encode(foo)
-// }
 
 //MovSetupVariableHandler bla bla
 func MovSetupVariableHandler(w http.ResponseWriter, r *http.Request) {
@@ -765,32 +693,6 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&voyagerMedia)
 
-}
-
-func intLastShipHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println(" started")
-	u, err := url.Parse(r.URL.String())
-	if err != nil {
-		log.Println(" url parse error")
-		log.Println(err)
-	}
-	m, eff := url.ParseQuery(u.RawQuery)
-	if eff != nil {
-		log.Println("usrl parsequery error")
-		log.Println(eff)
-	}
-	s1 := m["season"][0]
-	ses := DBcon()
-	defer ses.Close()
-	MTyc := ses.DB("tvgobs").C("tvgobs")
-	var lastshipMedia []map[string]string
-	b1 := bson.M{"catagory": "Last Ship", "season": s1}
-	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&lastshipMedia)
-	if errG != nil {
-		log.Println(errG)
-	}
-	json.NewEncoder(w).Encode(&lastshipMedia)
 }
 
 func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
@@ -1119,8 +1021,6 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&lokiMedia)
 }
 
-
-
 func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Starting intWhatIf")
 	log.Println(" started")
@@ -1190,7 +1090,6 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("MastersOfTheUniverse url parse querry error")
 		log.Println(eff)
 	}
-	// s1 := m["season"][0]
 	ses := DBcon()
 	defer ses.Close()
 	MTyc := ses.DB("tvgobs").C("tvgobs")
@@ -1269,8 +1168,6 @@ func main() {
 	r.HandleFunc("/intXMen", intXMenHandler)
 	r.HandleFunc("/intDocumentary", intDocumentaryHandler)
 	r.HandleFunc("/intTheRock", intTheRockHandler)
-	// r.HandleFunc("/MovDBCount", MovDBCountHandler)
-	// r.HandleFunc("/MovSetUp", MovSetUpHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
 	
@@ -1281,15 +1178,12 @@ func main() {
 	r.HandleFunc("/intDiscovery", intDiscoveryHandler)
 	r.HandleFunc("/intEnterprise", intEnterpriseHandler)
 	r.HandleFunc("/intForAllManKind", intForAllManKindHandler)
-	r.HandleFunc("/intLastShip", intLastShipHandler)
 	r.HandleFunc("/intLostInSpace", intLostInSpaceHandler)
 	r.HandleFunc("/intLowerDecks", intLowerDecksHandler)
 	r.HandleFunc("/intMandalorian", intMandalorianHandler)
 	r.HandleFunc("/intOrville", intOrvilleHandler)
 	r.HandleFunc("/intPicard", intPicardHandler)
 	r.HandleFunc("/intRaisedByWolves", intRaisedByWolvesHandler)
-	// r.HandleFunc("/intSpaceTime", intSpaceTimeHandler)
-	// r.HandleFunc("/intSeanCarrol", intSeanCarrolHandler)
 	r.HandleFunc("/intSTTV", intSTTVHandler)
 	r.HandleFunc("/intTNG", intTNGHandler)
 	r.HandleFunc("/intVoyager", intVoyagerHandler)
