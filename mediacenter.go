@@ -1050,6 +1050,35 @@ func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&whatifMedia)
 }
 
+func intYTheLastManHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Starting intYTheLastMan")
+	log.Println("YTheLastMan started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println(" url parse error")
+		log.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("usrl parsequery error")
+		log.Println(eff)
+	}
+	s1 := m["season"][0]
+	log.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var YTheLastManMedia []map[string]string
+	b1 := bson.M{"catagory": "YTheLastMan", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&YTheLastManMedia)
+	if errG != nil {
+		log.Println(errG)
+	}
+	log.Println(YTheLastManMedia)
+	json.NewEncoder(w).Encode(&YTheLastManMedia)
+}
+
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TheBadBatch started")
 	u, err := url.Parse(r.URL.String())
@@ -1192,7 +1221,7 @@ func main() {
 	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
-
+	r.HandleFunc("/intYTheLastMan", intYTheLastManHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
