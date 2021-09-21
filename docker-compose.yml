@@ -16,7 +16,7 @@ services:
       - MEDIACENTER_TVGO_SETUP=1
       - MEDIACENTER_MONGODB_ADDRESS=mongodb://db:27017/mediacenter
       - MEDIACENTER_MONGODB_THUMB_ADDRESS=mongodb://db:27017/movbsthumb
-      - MEDIACENTER_LOG_PATH=./logs/moviegobs.log
+      - MEDIACENTER_LOG_BASE_PATH=/root/logs
       - MEDIACENTER_MOVIES_PATH=/root/fsData/Movies
       - MEDIACENTER_TVSHOWS_PATH=/root/fsData/TVShows
       - MEDIACENTER_HARDRIVE_POSTERS_PATH=/root/fsData/Posters2
@@ -37,6 +37,7 @@ services:
     volumes:
       - mediacentervol:/root/fsData/
       - mediacenterpicvol:/root/static/
+      - mediacenterlogvol:/root/logs/
     depends_on:
       - db
 
@@ -58,5 +59,11 @@ volumes:
       device: /home/pi/Thumbnails
       o: bind
 
+  mediacenterlogvol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pi/LOGFILES
+      o: bind
 
 

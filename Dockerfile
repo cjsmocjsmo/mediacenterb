@@ -23,7 +23,7 @@ RUN \
   chmod -R +rwx ./fsData && \
   mkdir ./logs && \
   chmod -R +rwx ./logs && \
-  echo "Creating log file" > ./logs/moviegobs.log && \
+  echo "Creating log file" > ./logs/moviegobsServer.log && \
   chmod -R +rwx ./logs/moviegobs.log
   
 CMD ["./main"]

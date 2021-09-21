@@ -1055,12 +1055,12 @@ func intYTheLastManHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("YTheLastMan started")
 	u, err := url.Parse(r.URL.String())
 	if err != nil {
-		log.Println(" url parse error")
+		log.Println("YTheLastManHandler url parse error")
 		log.Println(err)
 	}
 	m, eff := url.ParseQuery(u.RawQuery)
 	if eff != nil {
-		log.Println("usrl parsequery error")
+		log.Println("YTheLastManHandler usrl parsequery error")
 		log.Println(eff)
 	}
 	s1 := m["season"][0]
@@ -1151,7 +1151,7 @@ func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func setupLogging() {
-	logfile := os.Getenv("MEDIACENTER_LOG_PATH")
+	logfile := os.Getenv("MEDIACENTER_LOG_BASE_PATH") + "moviegobsServer.log"
 	// If the file doesn't exist, create it or append to the file
 	file, err := os.OpenFile(logfile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
