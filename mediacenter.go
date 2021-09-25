@@ -1079,6 +1079,64 @@ func intYTheLastManHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&YTheLastManMedia)
 }
 
+func intFoundationHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Starting Foundation")
+	log.Println("Foundation started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("Foundation url parse error")
+		log.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Foundation usrl parsequery error")
+		log.Println(eff)
+	}
+	s1 := m["season"][0]
+	log.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var FoundationMedia []map[string]string
+	b1 := bson.M{"catagory": "Foundation", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&FoundationMedia)
+	if errG != nil {
+		log.Println(errG)
+	}
+	log.Println(FoundationMedia)
+	json.NewEncoder(w).Encode(&FoundationMedia)
+}
+
+func intVisionsHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Starting Visions")
+	log.Println("Visions started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("Visions url parse error")
+		log.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Visions usrl parsequery error")
+		log.Println(eff)
+	}
+	s1 := m["season"][0]
+	log.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var VisionsMedia []map[string]string
+	b1 := bson.M{"catagory": "Visions", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).All(&VisionsMedia)
+	if errG != nil {
+		log.Println(errG)
+	}
+	log.Println(VisionsMedia)
+	json.NewEncoder(w).Encode(&VisionsMedia)
+}
+
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TheBadBatch started")
 	u, err := url.Parse(r.URL.String())
@@ -1222,6 +1280,9 @@ func main() {
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
 	r.HandleFunc("/intYTheLastMan", intYTheLastManHandler)
+
+	r.HandleFunc("/intFoundation", intFoundationHandler)
+	r.HandleFunc("/intVisions", intVisionsHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
