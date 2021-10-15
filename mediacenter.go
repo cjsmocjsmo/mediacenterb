@@ -579,7 +579,7 @@ func intSTTVHandler(w http.ResponseWriter, r *http.Request) {
 	b1 := bson.M{"catagory": "STTV", "season": s1}
 	b2 := bson.M{"_id": 0}
 	fmt.Printf("this is b1 %s", b1)
-	errG := MTyc.Find(b1).Select(b2).All(&STTVMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&STTVMedia)
 	if errG != nil {
 		log.Println("STTVHandler db call error")
 		log.Println(errG)
@@ -607,7 +607,7 @@ func intTNGHandler(w http.ResponseWriter, r *http.Request) {
 	var nextGenerationMedia []map[string]string
 	b1 := bson.M{"catagory": "TNG", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&nextGenerationMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&nextGenerationMedia)
 	if errG != nil {
 		log.Println("TNGHandler db call error")
 		log.Println(errG)
@@ -635,7 +635,7 @@ func intEnterpriseHandler(w http.ResponseWriter, r *http.Request) {
 	var enterpriseMedia []map[string]string
 	b1 := bson.M{"catagory": "Enterprise", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&enterpriseMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&enterpriseMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -661,7 +661,7 @@ func intDiscoveryHandler(w http.ResponseWriter, r *http.Request) {
 	var discoveryMedia []map[string]string
 	b1 := bson.M{"catagory": "Discovery", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&discoveryMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&discoveryMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -687,7 +687,7 @@ func intVoyagerHandler(w http.ResponseWriter, r *http.Request) {
 	var voyagerMedia []map[string]string
 	b1 := bson.M{"catagory": "Voyager", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&voyagerMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&voyagerMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -714,7 +714,7 @@ func intOrvilleHandler(w http.ResponseWriter, r *http.Request) {
 	var OrvilleMedia []map[string]string
 	b1 := bson.M{"catagory": "Orville", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTtc.Find(b1).Select(b2).All(&OrvilleMedia)
+	errG := MTtc.Find(b1).Select(b2).Sort("episode").All(&OrvilleMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -740,7 +740,7 @@ func intLostInSpaceHandler(w http.ResponseWriter, r *http.Request) {
 	var LostInSpaceMedia []map[string]string
 	b1 := bson.M{"catagory": "Lost In Space", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTtc.Find(b1).Select(b2).All(&LostInSpaceMedia)
+	errG := MTtc.Find(b1).Select(b2).Sort("episode").All(&LostInSpaceMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -767,7 +767,7 @@ func intPicardHandler(w http.ResponseWriter, r *http.Request) {
 	var PicardMedia []map[string]string
 	b1 := bson.M{"catagory": "Picard", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTtc.Find(b1).Select(b2).All(&PicardMedia)
+	errG := MTtc.Find(b1).Select(b2).Sort("episode").All(&PicardMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -794,7 +794,7 @@ func intMandalorianHandler(w http.ResponseWriter, r *http.Request) {
 	var MandalorianMedia []map[string]string
 	b1 := bson.M{"catagory": "Mandalorian", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTtc.Find(b1).Select(b2).All(&MandalorianMedia)
+	errG := MTtc.Find(b1).Select(b2).Sort("episode").All(&MandalorianMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -821,7 +821,7 @@ func intAlteredCarbonHandler(w http.ResponseWriter, r *http.Request) {
 	var alteredcarbonMedia []map[string]string
 	b1 := bson.M{"catagory": "AlteredCarbon", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&alteredcarbonMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&alteredcarbonMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -847,7 +847,7 @@ func intLowerDecksHandler(w http.ResponseWriter, r *http.Request) {
 	var lowerdecksMedia []map[string]string
 	b1 := bson.M{"catagory": "LowerDecks", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&lowerdecksMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&lowerdecksMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -873,7 +873,7 @@ func intRaisedByWolvesHandler(w http.ResponseWriter, r *http.Request) {
 	var raisedbywolvesMedia []map[string]string
 	b1 := bson.M{"catagory": "RaisedByWolves", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&raisedbywolvesMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&raisedbywolvesMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -901,7 +901,7 @@ func intForAllManKindHandler(w http.ResponseWriter, r *http.Request) {
 	var forallmankindMedia []map[string]string
 	b1 := bson.M{"catagory": "ForAllManKind", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&forallmankindMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&forallmankindMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -929,7 +929,7 @@ func intAlienWorldsHandler(w http.ResponseWriter, r *http.Request) {
 	var alienworldsMedia []map[string]string
 	b1 := bson.M{"catagory": "AlienWorlds", "season": `01`}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&alienworldsMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&alienworldsMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -957,7 +957,7 @@ func intWandaVisionHandler(w http.ResponseWriter, r *http.Request) {
 	var wandavisionMedia []map[string]string
 	b1 := bson.M{"catagory": "WandaVision", "season": `01`}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&wandavisionMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&wandavisionMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -985,7 +985,7 @@ func intFalconWinterSoldierHandler(w http.ResponseWriter, r *http.Request) {
 	var lokiMedia []map[string]string
 	b1 := bson.M{"catagory": "FalconWinterSoldier", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&lokiMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1013,7 +1013,7 @@ func intLokiHandler(w http.ResponseWriter, r *http.Request) {
 	var lokiMedia []map[string]string
 	b1 := bson.M{"catagory": "Loki", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&lokiMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&lokiMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1042,7 +1042,7 @@ func intWhatIfHandler(w http.ResponseWriter, r *http.Request) {
 	var whatifMedia []map[string]string
 	b1 := bson.M{"catagory": "WhatIf", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&whatifMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&whatifMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1071,7 +1071,7 @@ func intYTheLastManHandler(w http.ResponseWriter, r *http.Request) {
 	var YTheLastManMedia []map[string]string
 	b1 := bson.M{"catagory": "YTheLastMan", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&YTheLastManMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&YTheLastManMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1100,7 +1100,7 @@ func intFoundationHandler(w http.ResponseWriter, r *http.Request) {
 	var FoundationMedia []map[string]string
 	b1 := bson.M{"catagory": "Foundation", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&FoundationMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&FoundationMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1129,7 +1129,7 @@ func intVisionsHandler(w http.ResponseWriter, r *http.Request) {
 	var VisionsMedia []map[string]string
 	b1 := bson.M{"catagory": "Visions", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&VisionsMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&VisionsMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1156,7 +1156,7 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	var thebadbatchMedia []map[string]string
 	b1 := bson.M{"catagory": "TheBadBatch", "season": s1}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&thebadbatchMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&thebadbatchMedia)
 	if errG != nil {
 		log.Println(errG)
 	}
@@ -1183,7 +1183,7 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 	var mastersOfTheUniverseMedia []map[string]string
 	b1 := bson.M{"catagory": "MastersOfTheUniverse", "season": `01`}
 	b2 := bson.M{"_id": 0}
-	errG := MTyc.Find(b1).Select(b2).All(&mastersOfTheUniverseMedia)
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&mastersOfTheUniverseMedia)
 	if errG != nil {
 		log.Println("mastersOfTheUniverse db call error")
 		log.Println(errG)
