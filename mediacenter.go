@@ -1137,6 +1137,39 @@ func intVisionsHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&VisionsMedia)
 }
 
+
+func intProdigyHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Starting Prodigy")
+	log.Println("Prodigy started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("Prodigy url parse error")
+		log.Println(err)
+	}
+	m, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Prodigy usrl parsequery error")
+		log.Println(eff)
+	}
+	s1 := m["season"][0]
+	log.Println(s1)
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var ProdigyMedia []map[string]string
+	b1 := bson.M{"catagory": "Prodigy", "season": s1}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&ProdigyMedia)
+	if errG != nil {
+		log.Println(errG)
+	}
+	log.Println(ProdigyMedia)
+	json.NewEncoder(w).Encode(&ProdigyMedia)
+}
+
+
+
+
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TheBadBatch started")
 	u, err := url.Parse(r.URL.String())
@@ -1283,6 +1316,7 @@ func main() {
 
 	r.HandleFunc("/intFoundation", intFoundationHandler)
 	r.HandleFunc("/intVisions", intVisionsHandler)
+	r.HandleFunc("/intProdigy", intProdigyHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
