@@ -1226,6 +1226,40 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %s files", count)
 }
 
+func intWheelOfTimeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("WheelOfTime started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("WheelOfTime url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var wheeloftimeMedia []map[string]string
+	b1 := bson.M{"catagory": "WheelOfTime", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&wheeloftimeMedia)
+	if errG != nil {
+		log.Println("WheelOfTime db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&wheeloftimeMedia)
+	count := len(wheeloftimeMedia)
+	log.Printf("Sent %s files", count)
+}
+
+
+
+
+
+
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1313,10 +1347,11 @@ func main() {
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
 	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
 	r.HandleFunc("/intYTheLastMan", intYTheLastManHandler)
-
 	r.HandleFunc("/intFoundation", intFoundationHandler)
 	r.HandleFunc("/intVisions", intVisionsHandler)
 	r.HandleFunc("/intProdigy", intProdigyHandler)
+
+	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
