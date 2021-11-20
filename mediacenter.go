@@ -1378,7 +1378,7 @@ func main() {
 	r.HandleFunc("/intProdigy", intProdigyHandler)
 
 	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
-	r.HandleFunc("intCowboyBebop", intCowboyBebopHandler)
+	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
