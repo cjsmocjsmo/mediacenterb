@@ -1254,7 +1254,33 @@ func intWheelOfTimeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %s files", count)
 }
 
-
+func intCowboyBebopHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("CowboyBebop started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("CowboyBebop url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var CowboyBebopMedia []map[string]string
+	b1 := bson.M{"catagory": "CowboyBebop", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&CowboyBebopMedia)
+	if errG != nil {
+		log.Println("CowboyBebop db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&CowboyBebopMedia)
+	count := len(CowboyBebopMedia)
+	log.Printf("Sent %s files", count)
+}
 
 
 
