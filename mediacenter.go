@@ -1167,9 +1167,6 @@ func intProdigyHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&ProdigyMedia)
 }
 
-
-
-
 func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TheBadBatch started")
 	u, err := url.Parse(r.URL.String())
@@ -1282,7 +1279,33 @@ func intCowboyBebopHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %s files", count)
 }
 
-
+func intHawkeyeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Hawkeye started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Hawkeye url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var HawkeyeMedia []map[string]string
+	b1 := bson.M{"catagory": "Hawkeye", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&HawkeyeMedia)
+	if errG != nil {
+		log.Println("Hawkeye db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&HawkeyeMedia)
+	count := len(HawkeyeMedia)
+	log.Printf("Sent %s files", count)
+}
 
 
 
@@ -1379,6 +1402,7 @@ func main() {
 
 	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
 	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
+	r.HandleFunc("/Hawkeye", intHawkeyeHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
