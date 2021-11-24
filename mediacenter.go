@@ -1402,7 +1402,7 @@ func main() {
 
 	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
 	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
-	r.HandleFunc("/Hawkeye", intHawkeyeHandler)
+	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
