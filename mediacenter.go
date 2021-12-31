@@ -26,8 +26,8 @@ import (
 	"github.com/cjsmocjsmo/tvgo"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
-	"github.com/gorilla/mux"
 	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -59,10 +59,10 @@ func intActionHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("ActionHandler db call error")
 		log.Println(err)
 	}
-        log.Println(ActionMedia)
+	log.Println(ActionMedia)
 	json.NewEncoder(w).Encode(ActionMedia)
 	count := len(ActionMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
@@ -80,7 +80,7 @@ func intCartoonsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(CartoonMedia)
 	count := len(CartoonMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intComedyHandler(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +98,7 @@ func intComedyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(ComedyMedia)
 	count := len(ComedyMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intDramaHandler(w http.ResponseWriter, r *http.Request) {
@@ -116,7 +116,7 @@ func intDramaHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(DramaMedia)
 	count := len(DramaMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
@@ -134,7 +134,7 @@ func intGodzillaHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(GodzillaMedia)
 	count := len(GodzillaMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
@@ -152,7 +152,7 @@ func intIndianaJonesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(IndianaJonesMedia)
 	count := len(IndianaJonesMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
@@ -170,7 +170,7 @@ func intJohnWayneHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(JohnWayneMedia)
 	count := len(JohnWayneMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
@@ -188,7 +188,7 @@ func intJurassicParkHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(JurassicParkMedia)
 	count := len(JurassicParkMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
@@ -206,7 +206,7 @@ func intKingsManHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(KingsmanMedia)
 	count := len(KingsmanMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
@@ -223,7 +223,7 @@ func intHarryPotterHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(HarryPotterMedia)
 	count := len(HarryPotterMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
@@ -240,7 +240,7 @@ func intMenInBlackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(MenInBlackMedia)
 	count := len(MenInBlackMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intMiscHandler(w http.ResponseWriter, r *http.Request) {
@@ -257,7 +257,7 @@ func intMiscHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(MiscMedia)
 	count := len(MiscMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
@@ -275,7 +275,7 @@ func intSciFiHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(SciFiMedia)
 	count := len(SciFiMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
@@ -293,7 +293,7 @@ func intStarTrekHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(StarTrekMedia)
 	count := len(StarTrekMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
@@ -311,7 +311,7 @@ func intStarWarsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(StarWarsMedia)
 	count := len(StarWarsMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
@@ -329,7 +329,7 @@ func intSuperHerosHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(SuperHerosMedia)
 	count := len(SuperHerosMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
@@ -347,7 +347,7 @@ func intTremorsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(TremorsMedia)
 	count := len(TremorsMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
@@ -365,7 +365,7 @@ func intJohnWickHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(JohnWickMedia)
 	count := len(JohnWickMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
@@ -383,7 +383,7 @@ func intPiratesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(PiratesMedia)
 	count := len(PiratesMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
@@ -401,7 +401,7 @@ func intBruceWillisHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(DieHardMedia)
 	count := len(DieHardMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
@@ -419,7 +419,7 @@ func intFantasyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(FantasyMedia)
 	count := len(FantasyMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
@@ -437,7 +437,7 @@ func intRiddickHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(RiddickMedia)
 	count := len(RiddickMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
@@ -455,7 +455,7 @@ func intTomCruizeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(TCMedia)
 	count := len(TCMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intXMenHandler(w http.ResponseWriter, r *http.Request) {
@@ -473,7 +473,7 @@ func intXMenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(XMenMedia)
 	count := len(XMenMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
@@ -491,7 +491,7 @@ func intDocumentaryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(DocumentaryMedia)
 	count := len(DocumentaryMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
@@ -509,7 +509,7 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(TheRockMedia)
 	count := len(TheRockMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
@@ -1137,7 +1137,6 @@ func intVisionsHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&VisionsMedia)
 }
 
-
 func intProdigyHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Starting Prodigy")
 	log.Println("Prodigy started")
@@ -1192,7 +1191,7 @@ func intTheBadBatchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&thebadbatchMedia)
 	count := len(thebadbatchMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
@@ -1220,7 +1219,7 @@ func intMastersOfTheUniverseHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&mastersOfTheUniverseMedia)
 	count := len(mastersOfTheUniverseMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intWheelOfTimeHandler(w http.ResponseWriter, r *http.Request) {
@@ -1248,7 +1247,7 @@ func intWheelOfTimeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&wheeloftimeMedia)
 	count := len(wheeloftimeMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intCowboyBebopHandler(w http.ResponseWriter, r *http.Request) {
@@ -1276,7 +1275,7 @@ func intCowboyBebopHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&CowboyBebopMedia)
 	count := len(CowboyBebopMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
 
 func intHawkeyeHandler(w http.ResponseWriter, r *http.Request) {
@@ -1304,10 +1303,8 @@ func intHawkeyeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(&HawkeyeMedia)
 	count := len(HawkeyeMedia)
-	log.Printf("Sent %s files", count)
+	log.Printf("Sent %v files", count)
 }
-
-
 
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
@@ -1321,7 +1318,6 @@ func TVSetupStatusHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVSetupStatusHandler started")
 	status := os.Getenv("MOVIECENTER_TVGO_SETUP")
 	json.NewEncoder(w).Encode(status)
-	log.Printf("TVSetupStatusHandler is %s", TVSetupStatusHandler)
 }
 
 func setupLogging() {
@@ -1332,7 +1328,7 @@ func setupLogging() {
 		log.Fatal(err)
 	}
 	log.SetOutput(file)
-	log.Println("Logging started \n")
+	log.Println("Logging started")
 }
 
 func init() {
@@ -1373,7 +1369,6 @@ func main() {
 	r.HandleFunc("/intTheRock", intTheRockHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 
-	
 	//TVGOBS_SETUP
 	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
@@ -1394,7 +1389,7 @@ func main() {
 	r.HandleFunc("/intMastersOfTheUniverse", intMastersOfTheUniverseHandler)
 	r.HandleFunc("/intLoki", intLokiHandler)
 	r.HandleFunc("/intTheBadBatch", intTheBadBatchHandler)
-	r.HandleFunc("/intWhatIf", intWhatIfHandler) 
+	r.HandleFunc("/intWhatIf", intWhatIfHandler)
 	r.HandleFunc("/intYTheLastMan", intYTheLastManHandler)
 	r.HandleFunc("/intFoundation", intFoundationHandler)
 	r.HandleFunc("/intVisions", intVisionsHandler)
@@ -1403,9 +1398,8 @@ func main() {
 	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
 	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
 	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
-	
-	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
+	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
 	// r.HandleFunc("/TVSetUp", TVSetUpHandler)
 	// r.HandleFunc("/TVDBCount", TVDBCountHandler)
@@ -1413,10 +1407,10 @@ func main() {
 
 	// r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
-	
+
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("/media/"))))
-	http.ListenAndServe(":8888", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), 
-		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), 
+	http.ListenAndServe(":8888", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}),
+		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}),
 		handlers.AllowedOrigins([]string{"*"}))(r))
 }
