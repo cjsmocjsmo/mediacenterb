@@ -9,7 +9,7 @@ services:
       - 27017:27017
 
   mediacenterb:
-    image: mediacenterb:0.6.3
+    image: mediacenterb:0.6.4
     build: .
     environment:
       - MEDIACENTER_SETUP=1
