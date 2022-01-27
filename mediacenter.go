@@ -512,6 +512,24 @@ func intTheRockHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intNicolasCageHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("NicolasCage started")
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var NicolasCageMedia []map[string]string
+	b1 := bson.M{"catagory": "NicolasCage"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&NicolasCageMedia)
+	if err != nil {
+		log.Println("NicolasCage db call error")
+		log.Println(err)
+	}
+	json.NewEncoder(w).Encode(NicolasCageMedia)
+	count := len(NicolasCageMedia)
+	log.Printf("Sent %v files", count)
+}
+
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
