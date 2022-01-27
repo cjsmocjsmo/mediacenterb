@@ -1414,7 +1414,7 @@ func main() {
 	r.HandleFunc("/intDocumentary", intDocumentaryHandler)
 	r.HandleFunc("/intTheRock", intTheRockHandler)
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
-	r.HandleFunc("intNicolasCage", intNicolasCageHandler)
+	r.HandleFunc("/intNicolasCage", intNicolasCageHandler)
 
 	//TVGOBS_SETUP
 	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
