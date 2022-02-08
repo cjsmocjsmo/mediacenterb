@@ -1352,6 +1352,34 @@ func intBookOfBobaFettHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intReacherHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Reacher started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Reacher url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var ReacherMedia []map[string]string
+	b1 := bson.M{"catagory": "Reacher", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&ReacherMedia)
+	if errG != nil {
+		log.Println("Reacher db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&ReacherMedia)
+	count := len(ReacherMedia)
+	log.Printf("Sent %v files", count)
+}
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1446,6 +1474,7 @@ func main() {
 	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
 	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
 	r.HandleFunc("/intBookOfBobaFett", intBookOfBobaFettHandler)
+	r.HandleFunc("/intReacher", intReacherHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 
