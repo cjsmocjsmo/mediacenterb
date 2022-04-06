@@ -1380,6 +1380,62 @@ func intReacherHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intHaloHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Halo started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Halo url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var HaloMedia []map[string]string
+	b1 := bson.M{"catagory": "Halo", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&HaloMedia)
+	if errG != nil {
+		log.Println("Halo db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&HaloMedia)
+	count := len(HaloMedia)
+	log.Printf("Sent %v files", count)
+}
+
+func intMoonKnightHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("MoonKnight started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("MoonKnight url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var MoonKnightMedia []map[string]string
+	b1 := bson.M{"catagory": "MoonKnight", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&MoonKnightMedia)
+	if errG != nil {
+		log.Println("MoonKnight db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&MoonKnightMedia)
+	count := len(MoonKnightMedia)
+	log.Printf("Sent %v files", count)
+}
+
 func intArnoldHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("intArnoldHandler started")
 	ses := DBcon()
@@ -1494,14 +1550,10 @@ func main() {
 	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
 	r.HandleFunc("/intBookOfBobaFett", intBookOfBobaFettHandler)
 	r.HandleFunc("/intReacher", intReacherHandler)
+	r.HandleFunc("/initHalo", intHaloHandler)
+	r.HandleFunc("/intMoonKnight", intMoonKnightHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
-
-	// r.HandleFunc("/TVSetUp", TVSetUpHandler)
-	// r.HandleFunc("/TVDBCount", TVDBCountHandler)
-	// r.HandleFunc("/DropTVDataBase", DropTVDataBaseHandler)
-
-	// r.HandleFunc("/playMedia", playMediaHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 
 	s.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(""))))
