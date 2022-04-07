@@ -1550,7 +1550,7 @@ func main() {
 	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
 	r.HandleFunc("/intBookOfBobaFett", intBookOfBobaFettHandler)
 	r.HandleFunc("/intReacher", intReacherHandler)
-	r.HandleFunc("/initHalo", intHaloHandler)
+	r.HandleFunc("/intHalo", intHaloHandler)
 	r.HandleFunc("/intMoonKnight", intMoonKnightHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
