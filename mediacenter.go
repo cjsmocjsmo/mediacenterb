@@ -1436,6 +1436,34 @@ func intMoonKnightHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intStrangeNewWorldsHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("StrangeNewWorlds started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("StrangeNewWorlds url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var StrangeNewWorldsMedia []map[string]string
+	b1 := bson.M{"catagory": "StrangeNewWorlds", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&StrangeNewWorldsMedia)
+	if errG != nil {
+		log.Println("StrangeNewWorlds db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&StrangeNewWorldsMedia)
+	count := len(StrangeNewWorldsMedia)
+	log.Printf("Sent %v files", count)
+}
+
 func intArnoldHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("intArnoldHandler started")
 	ses := DBcon()
@@ -1552,6 +1580,7 @@ func main() {
 	r.HandleFunc("/intReacher", intReacherHandler)
 	r.HandleFunc("/intHalo", intHaloHandler)
 	r.HandleFunc("/intMoonKnight", intMoonKnightHandler)
+	r.HandleFunc("/intStrangeNewWorlds", intStrangeNewWorldsHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
