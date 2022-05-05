@@ -177,6 +177,8 @@ github.com/cjsmocjsmo/tvgo v0.9.10 h1:w7v49wId2lOVAcAB6ctCEyVoxofB6V3oNESD3jJyBx
 github.com/cjsmocjsmo/tvgo v0.9.10/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cjsmocjsmo/tvgo v1.0.0 h1:CwN/mkkYgAEgEZrQ7tjTJhYQXOwh36bzcHdeckEmRSc=
 github.com/cjsmocjsmo/tvgo v1.0.0/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
+github.com/cjsmocjsmo/tvgo v1.0.1 h1:CeUJkSvmSnY+TyswgFCnh/cmW/DHneD3N8IegwZIiJM=
+github.com/cjsmocjsmo/tvgo v1.0.1/go.mod h1:UKGGgCCixo4JQl16/h1CycWKFJI5mlL6GKCAOE/RHNw=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
