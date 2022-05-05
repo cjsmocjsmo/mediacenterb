@@ -4,7 +4,7 @@ go 1.11
 
 require (
 	github.com/cjsmocjsmo/movgo v0.4.0
-	github.com/cjsmocjsmo/tvgo v0.9.10
+	github.com/cjsmocjsmo/tvgo v1.0.0
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
