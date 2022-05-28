@@ -1629,7 +1629,6 @@ func main() {
 	r.HandleFunc("/intFoundation", intFoundationHandler)
 	r.HandleFunc("/intVisions", intVisionsHandler)
 	r.HandleFunc("/intProdigy", intProdigyHandler)
-
 	r.HandleFunc("/intWheelOfTime", intWheelOfTimeHandler)
 	r.HandleFunc("/intCowboyBebop", intCowboyBebopHandler)
 	r.HandleFunc("/intHawkeye", intHawkeyeHandler)
@@ -1639,6 +1638,7 @@ func main() {
 	r.HandleFunc("/intMoonKnight", intMoonKnightHandler)
 	r.HandleFunc("/intStrangeNewWorlds", intStrangeNewWorldsHandler)
 	r.HandleFunc("/intPrehistoricPlanet", intPrehistoricPlanetHandler)
+	r.HandleFunc("/intObiWanKenobi", intObiWanKenobiHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
