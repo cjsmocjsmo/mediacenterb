@@ -22,17 +22,18 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
+	"os"
+
 	"github.com/cjsmocjsmo/movgo"
 	"github.com/cjsmocjsmo/tvgo"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"net/url"
-	"os"
 )
 
 // DBcon is exported because I want it
@@ -1482,6 +1483,62 @@ func intArnoldHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intPrehistoricPlanetHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("PrehistoricPlanet started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("PrehistoricPlanet url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var PrehistoricPlanetMedia []map[string]string
+	b1 := bson.M{"catagory": "PrehistoricPlanet", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&PrehistoricPlanetMedia)
+	if errG != nil {
+		log.Println("PrehistoricPlanet db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&PrehistoricPlanetMedia)
+	count := len(PrehistoricPlanetMedia)
+	log.Printf("Sent %v files", count)
+}
+
+func intObiWanKenobiHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("ObiWanKenobi started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("ObiWanKenobi url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var ObiWanKenobiMedia []map[string]string
+	b1 := bson.M{"catagory": "ObiWanKenobi", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&ObiWanKenobiMedia)
+	if errG != nil {
+		log.Println("ObiWanKenobi db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&ObiWanKenobiMedia)
+	count := len(ObiWanKenobiMedia)
+	log.Printf("Sent %v files", count)
+}
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1581,6 +1638,7 @@ func main() {
 	r.HandleFunc("/intHalo", intHaloHandler)
 	r.HandleFunc("/intMoonKnight", intMoonKnightHandler)
 	r.HandleFunc("/intStrangeNewWorlds", intStrangeNewWorldsHandler)
+	r.HandleFunc("/intPrehistoricPlanet", intPrehistoricPlanetHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
