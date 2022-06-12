@@ -1603,7 +1603,6 @@ func main() {
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 	r.HandleFunc("/intNicolasCage", intNicolasCageHandler)
 	r.HandleFunc("/intArnold", intArnoldHandler)
-
 	//TVGOBS_SETUP
 	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
