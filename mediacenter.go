@@ -1539,6 +1539,34 @@ func intObiWanKenobiHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intMSMarvelHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("MSMarvel started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("MSMarvel url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var MSMarvelMedia []map[string]string
+	b1 := bson.M{"catagory": "MSMarvel", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&MSMarvelMedia)
+	if errG != nil {
+		log.Println("ObiWanKenobi db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&MSMarvelMedia)
+	count := len(MSMarvelMedia)
+	log.Printf("Sent %v files", count)
+}
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1638,6 +1666,7 @@ func main() {
 	r.HandleFunc("/intStrangeNewWorlds", intStrangeNewWorldsHandler)
 	r.HandleFunc("/intPrehistoricPlanet", intPrehistoricPlanetHandler)
 	r.HandleFunc("/intObiWanKenobi", intObiWanKenobiHandler)
+	r.HandleFunc("/intMSMarvel", intMSMarvelHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
