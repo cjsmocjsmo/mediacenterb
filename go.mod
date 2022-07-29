@@ -3,7 +3,7 @@ module mediacenterb
 go 1.11
 
 require (
-	github.com/cjsmocjsmo/movgo v0.4.1
+	github.com/cjsmocjsmo/movgo v0.4.2
 	github.com/cjsmocjsmo/tvgo v1.0.9
 	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/gorilla/handlers v1.5.1

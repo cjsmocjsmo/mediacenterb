@@ -531,6 +531,25 @@ func intNicolasCageHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intJamesBondHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("intJamesBondHandler start")
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var JamesBondMedia []map[string]string
+	b1 := bson.M{"catagory": "JamesBond"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&JamesBondMedia)
+	if err != nil {
+		log.Println("JamesBondHandler db call error")
+		log.Println(err)
+	}
+	log.Println(JamesBondMedia)
+	json.NewEncoder(w).Encode(JamesBondMedia)
+	count := len(JamesBondMedia)
+	log.Printf("Sent %v files", count)
+}
+
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
@@ -1567,6 +1586,8 @@ func intMSMarvelHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1631,6 +1652,7 @@ func main() {
 	r.HandleFunc("/MovUpdate", MovUpdateHandler)
 	r.HandleFunc("/intNicolasCage", intNicolasCageHandler)
 	r.HandleFunc("/intArnold", intArnoldHandler)
+	r.HandleFunc("/intJamesBond", intJamesBondHandler)
 	//TVGOBS_SETUP
 	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
