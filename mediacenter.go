@@ -550,6 +550,13 @@ func intJamesBondHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+
+
+
+
+
+
+
 func playMediaReactHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" started")
 	u, err := url.Parse(r.URL.String())
@@ -1578,11 +1585,67 @@ func intMSMarvelHandler(w http.ResponseWriter, r *http.Request) {
 	b2 := bson.M{"_id": 0}
 	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&MSMarvelMedia)
 	if errG != nil {
-		log.Println("ObiWanKenobi db call error")
+		log.Println("MSMarvel db call error")
 		log.Println(errG)
 	}
 	json.NewEncoder(w).Encode(&MSMarvelMedia)
 	count := len(MSMarvelMedia)
+	log.Printf("Sent %v files", count)
+}
+
+func intIAmGrootHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("IAmGroot started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("IAmGroot url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var IAmGrootMedia []map[string]string
+	b1 := bson.M{"catagory": "IAmGroot", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&IAmGrootMedia)
+	if errG != nil {
+		log.Println("IAmGroot db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&IAmGrootMedia)
+	count := len(IAmGrootMedia)
+	log.Printf("Sent %v files", count)
+}
+
+func intSheHulkHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("SheHulk started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("SheHulk url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var SheHulkMedia []map[string]string
+	b1 := bson.M{"catagory": "SheHulk", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&SheHulkMedia)
+	if errG != nil {
+		log.Println("SheHulkMedia db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&SheHulkMedia)
+	count := len(SheHulkMedia)
 	log.Printf("Sent %v files", count)
 }
 
@@ -1689,6 +1752,9 @@ func main() {
 	r.HandleFunc("/intPrehistoricPlanet", intPrehistoricPlanetHandler)
 	r.HandleFunc("/intObiWanKenobi", intObiWanKenobiHandler)
 	r.HandleFunc("/intMSMarvel", intMSMarvelHandler)
+
+	r.HandleFunc("/intIAmGroot", intIAmGrootHandler)
+	r.HandleFunc("/intSheHulk", intSheHulkHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
