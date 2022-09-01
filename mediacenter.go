@@ -550,6 +550,62 @@ func intJamesBondHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intTransformersHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("intTransformersHandler start")
+	ses := DBcon()
+	defer ses.Close()
+	MTc := ses.DB("moviegobs").C("moviegobs")
+	var TransformersMedia []map[string]string
+	b1 := bson.M{"catagory": "Transformers"}
+	b2 := bson.M{"_id": 0}
+	err := MTc.Find(b1).Select(b2).All(&TransformersMedia)
+	if err != nil {
+		log.Println("TransformersHandler db call error")
+		log.Println(err)
+	}
+	log.Println(TransformersMedia)
+	json.NewEncoder(w).Encode(TransformersMedia)
+	count := len(TransformersMedia)
+	log.Printf("Sent %v files", count)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1716,6 +1772,7 @@ func main() {
 	r.HandleFunc("/intNicolasCage", intNicolasCageHandler)
 	r.HandleFunc("/intArnold", intArnoldHandler)
 	r.HandleFunc("/intJamesBond", intJamesBondHandler)
+	r.HandleFunc("/intTransformers", intTransformersHandler)
 	//TVGOBS_SETUP
 	r.HandleFunc("/intFalconWinterSoldier", intFalconWinterSoldierHandler)
 	r.HandleFunc("/intAlteredCarbon", intAlteredCarbonHandler)
