@@ -1869,6 +1869,7 @@ func main() {
 	r.HandleFunc("/intSheHulk", intSheHulkHandler)
 
 	r.HandleFunc("/intHouseOfTheDragon", intHouseOfTheDragonHandler)
+	r.HandleFunc("/intTheLordOfTheRingsTheRingsOfPower", intTheLordOfTheRingsTheRingsOfPowerHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
