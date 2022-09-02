@@ -1705,6 +1705,62 @@ func intSheHulkHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intHouseOfTheDragonHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("HouseOfTheDragon started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("HouseOfTheDragon url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var HouseOfTheDragonMedia []map[string]string
+	b1 := bson.M{"catagory": "HouseOfTheDragon", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&HouseOfTheDragonMedia)
+	if errG != nil {
+		log.Println("HouseOfTheDragonMedia db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&HouseOfTheDragonMedia)
+	count := len(HouseOfTheDragonMedia)
+	log.Printf("Sent %v files", count)
+}
+
+func intTheLordOfTheRingsTheRingsOfPowerHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("TheLordOfTheRingsTheRingsOfPower started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("TheLordOfTheRingsTheRingsOfPower url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var TheLordOfTheRingsTheRingsOfPowerMedia []map[string]string
+	b1 := bson.M{"catagory": "TheLordOfTheRingsTheRingsOfPower", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&TheLordOfTheRingsTheRingsOfPowerMedia)
+	if errG != nil {
+		log.Println("TheLordOfTheRingsTheRingsOfPowerMedia db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&TheLordOfTheRingsTheRingsOfPowerMedia)
+	count := len(TheLordOfTheRingsTheRingsOfPowerMedia)
+	log.Printf("Sent %v files", count)
+}
+
 
 
 // MovUpdateHandler needs exporting because I want it
@@ -1809,9 +1865,10 @@ func main() {
 	r.HandleFunc("/intPrehistoricPlanet", intPrehistoricPlanetHandler)
 	r.HandleFunc("/intObiWanKenobi", intObiWanKenobiHandler)
 	r.HandleFunc("/intMSMarvel", intMSMarvelHandler)
-
 	r.HandleFunc("/intIAmGroot", intIAmGrootHandler)
 	r.HandleFunc("/intSheHulk", intSheHulkHandler)
+
+	r.HandleFunc("/intHouseOfTheDragon", intHouseOfTheDragonHandler)
 
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
