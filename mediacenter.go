@@ -1761,7 +1761,33 @@ func intTheLordOfTheRingsTheRingsOfPowerHandler(w http.ResponseWriter, r *http.R
 	log.Printf("Sent %v files", count)
 }
 
-
+func intAndorHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Andor started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("Andor url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var AndorMedia []map[string]string
+	b1 := bson.M{"catagory": "Andor", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&AndorMedia)
+	if errG != nil {
+		log.Println("AndorMedia db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&AndorMedia)
+	count := len(AndorMedia)
+	log.Printf("Sent %v files", count)
+}
 
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
@@ -1870,7 +1896,8 @@ func main() {
 
 	r.HandleFunc("/intHouseOfTheDragon", intHouseOfTheDragonHandler)
 	r.HandleFunc("/intTheLordOfTheRingsTheRingsOfPower", intTheLordOfTheRingsTheRingsOfPowerHandler)
-
+	r.HandleFunc("/intAndor", intAndorHandler)
+	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
 
