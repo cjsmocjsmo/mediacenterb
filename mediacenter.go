@@ -1789,6 +1789,34 @@ func intAndorHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Sent %v files", count)
 }
 
+func intNightSkyHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("NightSky started")
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
+		log.Println("url parse error")
+		log.Println(err)
+	}
+	_, eff := url.ParseQuery(u.RawQuery)
+	if eff != nil {
+		log.Println("NightSky url parse querry error")
+		log.Println(eff)
+	}
+	ses := DBcon()
+	defer ses.Close()
+	MTyc := ses.DB("tvgobs").C("tvgobs")
+	var NightSkyMedia []map[string]string
+	b1 := bson.M{"catagory": "NightSky", "season": `01`}
+	b2 := bson.M{"_id": 0}
+	errG := MTyc.Find(b1).Select(b2).Sort("episode").All(&NightSkyMedia)
+	if errG != nil {
+		log.Println("NightSky db call error")
+		log.Println(errG)
+	}
+	json.NewEncoder(w).Encode(&NightSkyMedia)
+	count := len(NightSkyMedia)
+	log.Printf("Sent %v files", count)
+}
+
 // MovUpdateHandler needs exporting because I want it
 func TVUpdateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("TVUpdateHandler started")
@@ -1897,6 +1925,7 @@ func main() {
 	r.HandleFunc("/intHouseOfTheDragon", intHouseOfTheDragonHandler)
 	r.HandleFunc("/intTheLordOfTheRingsTheRingsOfPower", intTheLordOfTheRingsTheRingsOfPowerHandler)
 	r.HandleFunc("/intAndor", intAndorHandler)
+	r.HandleFunc("/intNightSky", intNightSkyHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
