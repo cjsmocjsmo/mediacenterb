@@ -1954,7 +1954,7 @@ func main() {
 	r.HandleFunc("/intTheLordOfTheRingsTheRingsOfPower", intTheLordOfTheRingsTheRingsOfPowerHandler)
 	r.HandleFunc("/intAndor", intAndorHandler)
 	r.HandleFunc("/intNightSky", intNightSkyHandler)
-	r.HandleFunc("intTalesOfTheJedi", intTalesOfTheJediHandler)
+	r.HandleFunc("/intTalesOfTheJedi", intTalesOfTheJediHandler)
 	
 	r.HandleFunc("/TVUpdate", TVUpdateHandler)
 	r.HandleFunc("/playMediaReact", playMediaReactHandler)
